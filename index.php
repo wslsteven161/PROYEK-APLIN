@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="css/all.min.css">
     <script src="js/all.min.js"></script>
 
+    <!-- JQUERY -->
+    <script src="js/jquery-3.5.1.min.js"></script>
+
     <!-- STYLE -->
     <link rel="stylesheet" href="style.css">
 
