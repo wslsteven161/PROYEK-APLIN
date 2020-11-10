@@ -1,6 +1,8 @@
 <?php
     // Required once every page
     include_once("Connection.php");
+
+    
 ?>
 
 <!DOCTYPE html>
