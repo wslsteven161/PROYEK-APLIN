@@ -9,5 +9,3 @@ change DocumentRoot "C:/xampp/htdocs" and <Directory "C:/xampp/htdocs">
 to wherever this project is
 restart apache
 dont forget to revert it back if you want
-
-alalalalal
