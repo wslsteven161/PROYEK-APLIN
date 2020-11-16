@@ -53,30 +53,30 @@
     <div style="position:relative">
         <div style="position:fixed">
             <div data-component="sidebar">
-                <div class="sidebar" style="margin-top: 30px;">
+                <div class="sidebar" style="margin-top: 60px;">
                     <ul class="list-group flex-column d-inline-block first-menu">
                         <li class="list-group-item" style="padding-left: 25px; padding-top:15px; padding-bottom:15px;">
-                            <a href="#"><i class="fas fa-user-circle"><span class="ml-2 align-middle">Reporting</span></i></a>
+                            <a href="#"><i class="fas fa-user-circle"></i><span class="ml-2 align-middle">1</span></a>
                         </li> 
 
                         <li class="list-group-item" style="padding-left: 25px; padding-top:15px; padding-bottom:15px;">
-                            <a href="#"><i class="fas fa-user-circle"><span class="ml-2 align-middle">Content</span></i></a>
+                            <a href="#"><i class="fas fa-user-circle"></i><span class="ml-2 align-middle">2</span></a>
                         </li> 
 
                         <li class="list-group-item" style="padding-left: 25px; padding-top:15px; padding-bottom:15px;">
-                            <a href="#"><i class="fas fa-user-circle"><span class="ml-2 align-middle">Engagement</span></i></a>
+                            <a href="#"><i class="fas fa-user-circle"></i><span class="ml-2 align-middle">3</span></a>
                         </li>
 
                         <li class="list-group-item" style="padding-left: 25px; padding-top:15px; padding-bottom:15px;">
-                            <a href="#"><i class="fas fa-user-circle"><span class="ml-2 align-middle">Image Center</span></i></a>
+                            <a href="#"><i class="fas fa-user-circle"></i><span class="ml-2 align-middle">4</span></a>
                         </li>
 
                         <li class="list-group-item" style="padding-left: 25px; padding-top:15px; padding-bottom:15px;">
-                            <a href="#"><i class="fas fa-user-circle"><span class="ml-2 align-middle">Settings</span></i></a>
+                            <a href="#"><i class="fas fa-user-circle"></i><span class="ml-2 align-middle">5</span></a>
                         </li>
 
                         <li class="list-group-item" style="padding-left: 25px; padding-top:15px; padding-bottom:15px;">
-                            <a href="#"><i class="fas fa-user-circle"><span class="ml-2 align-middle">Support</span></i></a>
+                            <a href="#"><i class="fas fa-user-circle"></i><span class="ml-2 align-middle">6</span></a>
                         </li>
                     </ul>
                 </div>
@@ -103,7 +103,7 @@
                     <h1>PENAWARAN OBAT DAN SUPLEMEN</h1>
                 </div>
 
-                <div class="row" id="produk-terlaris">
+                <div class="row" id="produk-terlaris" style="margin: auto;margin-left:80px;">
                     <div class="col-md-15 ">
                         <div class="product_box">
                             <a href="https://www.k24klik.com/p/vitacimin-tab-str-2s-718">

@@ -50,28 +50,72 @@
 
     <div id="login-box" style="text-align: center;height:250px;">
         <h1>Sign in</h1>
-        <input style="margin-left:200px;" type="text" name="email" placeholder="E-mail" />
-        <input style="margin-left:200px;margin-top:30px;" type="password" name="password" placeholder="Password" />
-        <input type="submit" name="signin_submit" value="Sign me in" />
+        <input style="margin-left:200px;" type="text" name="email" placeholder="E-mail" id="signin-u"/>
+        <input style="margin-left:200px;margin-top:30px;" type="password" name="password" placeholder="Password" id="signin-p"/>
+        <input type="submit" name="signin_submit" value="Sign me in" id="signin-btn" />
     </div>
     <div id="login-box">
         <div class="left">
             <h1>Sign up</h1>
-            <input type="text" name="username" placeholder="Username" />
-            <input type="text" name="email" placeholder="E-mail" />
-            <input type="password" name="password" placeholder="Password" />
-            <input type="password" name="password2" placeholder="Retype password" />
-            <input type="submit" name="signup_submit" value="Sign me up" />
+            <input type="text" name="username" placeholder="Username" id="signup-u"/>
+            <input type="text" name="email" placeholder="E-mail" id="signup-e"/>
+            <input type="password" name="password" placeholder="Password" id="signup-p"/>
+            <input type="password" name="password2" placeholder="Retype password" id="signup-cp"/>
+            <input type="submit" name="signup_submit" value="Sign me up" id="signup-btn"/>
         </div>
         <div class="or">OR</div>
         <div class="right">
-            <span class="loginwith">Sign in with<br />social network</span>
+            <span class="loginwith">Sign in with<br />Social network</span>
             <button class="social-signin google">Log in with Google+</button>
         </div>
     </div>
 
     <footer>
-        
+
     </footer>
 </body>
+<script>
+    $("#signin-btn").click(function(){                
+        let data = {
+            "username" : $("#signin-u").val(),
+            "password" : $("#signin-p").val()
+        };
+
+        $.post('login_user.php', data, function(data,status) {
+            let datas = JSON.parse(data);
+            if (datas['status'] == 'true' || datas['status'] == true || datas['status'] == 'true')
+            {
+                swal("Success!", "User signed in!", "success").then((value) => {
+                    window.location.replace("index.php");
+                });
+            }
+            else
+            {
+                swal("Failed!", "User not recognized!", "error");
+            }
+        });
+    });
+
+    $("#signup-btn").click(function(){ 
+        let data = {
+            "username" : $("#signup-u").val(),
+            "email" : $("#signup-e").val(),
+            "password" : $("#signup-p").val(),
+            "cpassword" : $("#signup-cp").val()
+        }
+        $.post('signup_user.php', data, function(data,status) {
+            let datas = JSON.parse(data);
+            if (datas['status'] == 'true' || datas['status'] == true || datas['status'] == 'true' )
+            {
+                swal("Success!", "User added!", "success");
+                $("#signup-u").val('');$("#signup-e").val('');$("#signup-p").val('');$("#signup-cp").val('');
+            }
+            else
+            {
+                swal("Error!", "Some data wrong!", "error");
+            }
+        });
+    });
+
+</script>
 </html>
