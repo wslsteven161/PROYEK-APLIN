@@ -40,9 +40,14 @@
                 <!--a href="#"><img src="" alt="" class="img-fluid"></a-->
             </div>
 
+            <span style="color:black;margin-right:-235px;z-index:1">
+                <i class="fas fa-search"></i>
+            </span>
+
             <div class="search">
                 <input type="text" placeholder="Cari Obat . . ." required></input>
             </div>
+
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
