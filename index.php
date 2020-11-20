@@ -39,22 +39,30 @@
                 <h1>APOTEK</h1>
                 <!--a href="#"><img src="" alt="" class="img-fluid"></a-->
             </div>
+
+            <div class="search" style="float:left;margin-top:20px;position:absolute;margin-left:400px;">
+                <input type="text" placeholder="Search" required>
+            </div>
+
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li><a href="#Home">Home</a></li>
                     <li><a href="#">About</a></li>
                     <!-- <li><a href="#">Contact us</a></li> -->
+
                     <?php 
                     if (isset($_COOKIE['User_LoggedIn']))
                     {
                     ?>
-                    <li><a href="#"><i class="fas fa-user-circle"></i> Profile</a></li>
+                        <li><a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i> Profile</a></li>
                     <?php                         
                     }
                     else
                     {
                     ?>
-                    <li><a href="signUpPage.php"><i class="fas fa-user-circle"></i> Sign up</a></li>
+
+                        <li><a href="signUpPage.php"><i class="fas fa-user-circle"></i> Sign up</a></li>
+
                     <?php
                     }
                     ?>
@@ -117,6 +125,15 @@
                 </div>
             </section>
 
+        </div>
+    </div>
+
+    <div class="panel panel-primary panel-transparent">
+        <div class="panel-heading">
+            <h3 class="panel-title">Panel primary</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
         </div>
     </div>
 

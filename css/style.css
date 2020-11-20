@@ -220,14 +220,38 @@ button.social-signin:active {
   transition: 0.2s ease;
 }
 
-button.social-signin.facebook {
-  background: #32508E;
-}
-
-button.social-signin.twitter {
-  background: #55ACEE;
-}
-
 button.social-signin.google {
   background: #DD4B39;
 }
+
+.search > input:hover{
+  display: block;
+}
+
+.search > input{
+  color: white;
+  font-size: 16px;
+  margin-top: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border: solid 3px #DD4B39;
+  outline: none;
+  border-radius: 35px;
+  transition: width 0.5s;
+  box-shadow: none;
+}
+.search > input::placeholder {
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}
+
+.search > input:focus::placeholder {
+  opacity: 1;
+}
+
+.search > input:focus,
+.search > input:not(:placeholder-shown) {
+  width: 250px;
+}
+
