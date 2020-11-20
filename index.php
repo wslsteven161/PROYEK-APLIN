@@ -51,7 +51,7 @@
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li><a href="#Home">Home</a></li>
+                    <li><a href="#">Home</a></li>
                     <li><a href="#">About</a></li>
                     <!-- <li><a href="#">Contact us</a></li> -->
 
@@ -59,7 +59,7 @@
                     if (isset($_COOKIE['User_LoggedIn']))
                     {
                     ?>
-                        <li><a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i> Profile</a></li>
+                        <li><a href="#"><i class="fas fa-user-circle"></i> Profile</a></li>
                     <?php                         
                     }
                     else
