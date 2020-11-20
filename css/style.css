@@ -224,6 +224,10 @@ button.social-signin.google {
   background: #DD4B39;
 }
 
+.FRONT-PAGE{
+  margin-top: 60px;
+}
+
 .search > input{
   position: relative;
   margin-top: 20px;
@@ -236,4 +240,26 @@ button.social-signin.google {
   outline: none;
   border-radius: 35px;
   transition: 0.5s;
+}
+
+.navigation-front-flex{
+  display: flex;
+  justify-content: center;
+}
+
+.navigation-front-flex img{
+  max-width: 100%;
+}
+.navigation-front-flex a{
+  text-decoration: none;
+}
+.navigation-front-flex .fixed{
+  width: 180px;
+  height: 180px;
+  text-align: center;
+  color: black;
+}
+
+.promosi-panel-1{
+  
 }

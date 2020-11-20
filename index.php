@@ -76,7 +76,7 @@
         </div>
     </header>
 
-    <div style="position:relative">
+    <div style="position:relative;display:none;">
         <div style="position:fixed">
             <div data-component="sidebar">
                 <div class="sidebar" style="margin-top: 60px;">
@@ -120,25 +120,49 @@
     <div class="FRONT-PAGE">
         <div class="container">
 
+            <section id="navigation-panel-1">
+                <div class="container navigation-front-flex">
+                    <div class="row">
+                        <div class="col">
+                            <a href="">
+                                <div class="fixed">
+                                    <img class="effect" src="images/medical-prescription.svg" alt="Card image cap">
+                                    <h4>Upload Resep</h4>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="">
+                                <div class="fixed">
+                                    <img class="effect" src="images/pills.svg" alt="Card image cap">
+                                    <h4>Placeholder</h4>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="">
+                                <div class="fixed">
+                                    <img class="effect" src="images/grid.svg" alt="Card image cap">
+                                    <h4>Browse Item</h4>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section id="Home">
                 <!-- <h1>HOME</h1> -->
             </section>
             
             <section id="Penawaran">
-                <div class="penawaran-title">
-                    <h1>PENAWARAN OBAT DAN SUPLEMEN</h1>
+                <div class="promosi-panel-1">
+                    <div class="penawaran-title">
+                        <h2>PENAWARAN OBAT DAN SUPLEMEN</h2>
+                    </div>
                 </div>
             </section>
 
-        </div>
-    </div>
-
-    <div class="panel panel-primary panel-transparent">
-        <div class="panel-heading">
-            <h3 class="panel-title">Panel primary</h3>
-        </div>
-        <div class="panel-body">
-            Panel content
         </div>
     </div>
 
