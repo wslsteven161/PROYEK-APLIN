@@ -2,6 +2,7 @@
     require_once("Connection.php");
 
     $status = False;
+    $dataUser;
     if ( isset($_POST['username']) && isset($_POST['password']) )
     {
         $q1 = $_POST['username'];
@@ -16,8 +17,13 @@
             if (password_verify($q2, $val['password']))
             {
                 $status = True;
+                $dataUser = $val;
                 break;
             }
+        }
+        if ($status)
+        {
+            setcookie("User_LoggedIn", $dataUser['username'], time() + (60*60*24) /* 24 jam */ );
         }
     }
 
