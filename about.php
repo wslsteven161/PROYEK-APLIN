@@ -25,6 +25,51 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-    
+<script>
+    swal("HORE", "ABOUT", "Warning");
+</script>
+<header class="fixed-top d-flex align-items-center header-transparent">
+        <div class="container d-flex align-items-center">
+            <div class="logo mr-auto">
+                <h1>APOTEK</h1>
+                <!--a href="#"><img src="" alt="" class="img-fluid"></a-->
+            </div>
+
+            <span style="color:black;margin-right:-235px;z-index:1">
+                <i class="fas fa-search"></i>
+            </span>
+
+            <form action="" method="get">
+                <div class="search">
+                    <input type="text" placeholder="Cari Obat . . ." required></input>
+                </div>
+            </form>
+
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <!-- <li><a href="#">Contact us</a></li> -->
+
+                    <?php 
+                    if (isset($_COOKIE['User_LoggedIn']))
+                    {
+                    ?>
+                        <li><a href="#"><i class="fas fa-user-circle"></i> Profile</a></li>
+                    <?php                         
+                    }
+                    else
+                    {
+                    ?>
+                        <li><a href="signUpPage.php"><i class="fas fa-user-circle"></i> Sign up</a></li>
+                    <?php
+                    }
+                    ?>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
 </body>
 </html>
