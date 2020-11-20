@@ -44,9 +44,11 @@
                 <i class="fas fa-search"></i>
             </span>
 
-            <div class="search">
-                <input type="text" placeholder="Cari Obat . . ." required></input>
-            </div>
+            <form action="" method="get">
+                <div class="search">
+                    <input type="text" placeholder="Cari Obat . . ." required></input>
+                </div>
+            </form>
 
 
             <nav class="nav-menu d-none d-lg-block">
@@ -65,12 +67,11 @@
                     else
                     {
                     ?>
-
                         <li><a href="signUpPage.php"><i class="fas fa-user-circle"></i> Sign up</a></li>
-
                     <?php
                     }
                     ?>
+
                 </ul>
             </nav>
         </div>
@@ -159,6 +160,15 @@
                 <div class="promosi-panel-1">
                     <div class="penawaran-title">
                         <h2>PENAWARAN OBAT DAN SUPLEMEN</h2>
+                    </div>
+                    <div class="penawaran-body">
+                        <div class="row justify-content-center" id="HomePromotion">
+                            <div class="col-sm-2"><h1>TEST1</h1></div>
+                            <div class="col-sm-2"><h1>TEST2</h1></div>
+                            <div class="col-sm-2"><h1>TEST3</h1></div>
+                            <div class="col-sm-2"><h1>TEST4</h1></div>
+                            <div class="col-sm-2"><h1>TEST5</h1></div>
+                        </div>
                     </div>
                 </div>
             </section>
