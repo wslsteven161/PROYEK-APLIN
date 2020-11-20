@@ -40,8 +40,8 @@
                 <!--a href="#"><img src="" alt="" class="img-fluid"></a-->
             </div>
 
-            <div class="search" style="float:left;margin-top:20px;position:absolute;margin-left:400px;">
-                <input type="text" placeholder="Search" required>
+            <div class="search">
+                <input type="text" placeholder="Cari Obat . . ." required></input>
             </div>
 
             <nav class="nav-menu d-none d-lg-block">

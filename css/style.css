@@ -224,34 +224,16 @@ button.social-signin.google {
   background: #DD4B39;
 }
 
-.search > input:hover{
-  display: block;
-}
-
 .search > input{
+  position: relative;
+  margin-top: 20px;
+  margin-right: 200px;
   color: white;
   font-size: 16px;
-  margin-top: 5px;
-  width: 40px;
+  width: 250px;
   height: 40px;
   padding: 10px;
-  border: solid 3px #DD4B39;
   outline: none;
   border-radius: 35px;
-  transition: width 0.5s;
-  box-shadow: none;
+  transition: 0.5s;
 }
-.search > input::placeholder {
-  opacity: 0;
-  transition: opacity 150ms ease-out;
-}
-
-.search > input:focus::placeholder {
-  opacity: 1;
-}
-
-.search > input:focus,
-.search > input:not(:placeholder-shown) {
-  width: 250px;
-}
-
