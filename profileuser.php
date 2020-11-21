@@ -49,14 +49,14 @@
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="about.php">About</a></li>
                     <!-- <li><a href="#">Contact us</a></li> -->
 
                     <?php 
                     if (isset($_COOKIE['User_LoggedIn']))
                     {
                     ?>
-                        <li><a href="profileuser.php"><i class="fas fa-user-circle"></i> Profile</a></li>
+                        <li><a href="#"><i class="fas fa-user-circle"></i> Profile</a></li>
                     <?php                         
                     }
                     else
