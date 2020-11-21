@@ -296,8 +296,8 @@
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="adminPageProfile.php">Profile</a></li>
+                    <li><a href="adminPage.php">Home</a></li>
+                    <li><a href="#">Profile</a></li>
                 </ul>
             </nav>
         </div>
@@ -318,19 +318,19 @@
         <div class="button" id="button-3">
             <div id="circle"></div>
             <a href="#">Let's Go!</a>
-        </div> -->
+        </div>
 
         <div class="button" id="button-4">
             <div id="underline"></div>
             <a href="#">Lihat List User</a>
-        </div>
+        </div> -->
 
         <div class="button" id="button-5">
             <div id="translate"></div>
-            <a href="#">Tambah/Edit Obat</a>
+            <a href="admin.php">LogOut</a>
         </div>
 
-        <div class="button" id="button-6">
+        <!-- <div class="button" id="button-6">
             <div id="spin"></div>
             <a href="#">Lihat Resep</a>
         </div>
@@ -338,7 +338,7 @@
         <div class="button" id="button-7">
             <div id="dub-arrow"><img src="#" alt="" /></div>
             <a href="#">ini saya bingung</a>
-        </div>
+        </div> -->
 
     </div>
 

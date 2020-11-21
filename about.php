@@ -26,7 +26,7 @@
 </head>
 <body>
 <script>
-    swal("HORE", "ABOUT", "Warning");
+    swal("HORE", "ABOUT", "warning");
 </script>
 <header class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">

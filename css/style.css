@@ -192,7 +192,7 @@ input[type="submit"]:active {
   display: block;
   margin-bottom: 40px;
   font-size: 28px;
-  color: #FFF;
+  color: rgb(59, 59, 59);
   text-align: center;
 }
 
