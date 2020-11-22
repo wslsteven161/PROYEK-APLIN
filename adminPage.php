@@ -298,12 +298,12 @@
                 <!--a href="#"><img src="" alt="" class="img-fluid"></a-->
             </div>
 
-            <nav class="nav-menu d-none d-lg-block">
+            <!-- <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="adminPageProfile.php">Profile</a></li>
                 </ul>
-            </nav>
+            </nav> -->
         </div>
     </header>
 
@@ -326,12 +326,12 @@
 
         <div class="button" id="button-4">
             <div id="underline"></div>
-            <a href="#">Lihat List User</a>
+            <a href="javascript:void(0)">Lihat List User</a>
         </div>
 
         <div class="button" id="button-5">
             <div id="translate"></div>
-            <a href="#">Tambah/Edit Obat</a>
+            <a href="javascript:void(0)">Tambah/Edit Obat</a>
         </div>
 
         <div class="button" id="button-6">
@@ -340,14 +340,15 @@
         </div>
 
         <div class="button" id="button-7">
-            <div id="dub-arrow"><img src="#" alt="" /></div>
-            <a href="#">ini saya bingung</a>
+            <!-- <div id="dub-arrow"><img src="#" alt="" /></div> -->
+            <div id="translate"></div>
+            <a href="admin.php?logout=1">LogOut</a>
         </div>
 
     </div>
 
     <div class="container flex-container">
-        <table class="table table-dark table-bordered table-hover" style="display:none;"> 
+        <table class="table table-dark table-bordered table-hover" style="display:none;" id="tableUser"> 
             <caption>List of users</caption>
             <thead>
                 <tr>
@@ -362,9 +363,62 @@
             </tbody>
         </table>
 
-        <div class="container insertFormObat">
-            <h1>H1</h1>
+        <div style="width:1000px;display:none;" id="FormObat">
+            <label style="color:white;">Form Obat</label>
+            <div class="container insertFormObat">
+                <form>
+                    <div class="form-group">
+                        <label>Nama Obat</label>
+                        <input type="text" class="form-control" placeholder="ex. Bodreksin">
+                    </div>
+                    <div class="form-group">
+                        <label>Harga Obat</label>
+                        <input type="number" class="form-control" placeholder="Rp. ">
+                    </div>
+                    <div class="form-group">
+                        <label>Stock Obat</label>
+                        <input type="number" class="form-control" placeholder="ex. 7">
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi Obat</label>
+                        <textarea class="form-control" rows="3" placeholder="ex. Obat Batuk"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Input foto obat</label>
+                        <input type="file" class="form-control-file">
+                    </div>
+                    <button class="btn btn-success" style="float:right;margin-bottom:20px;">Submit</button>
+                </form>
+            </div>
+
+            <h1 style="color:gray;">List Obat</h1>
+            <table class="table table-dark table-bordered table-hover">
+                <caption>List of obat</caption>
+                <thead>
+                    <tr>
+                        <th>Nama Obat</th>
+                        <th>Stock</th>
+                        <th>Harga</th>
+                        <th>Deskripsi</th>
+                        <th>Foto</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="obat-table">
+
+                    <!-- <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                    </tr> -->
+
+                </tbody>
+            </table>
         </div>
+
     </div>
 
 </body>
@@ -401,11 +455,11 @@
     }
     function Hidetable()
     {
-        $(".table").hide(500);
+        $("#tableUser").hide(500);
     }
     function Showtable()
     {
-        $(".table").show(500);
+        $("#tableUser").show(500);
     }
     function DisableAccount(data)
     {
@@ -437,6 +491,20 @@
         });
         DisplayAllUsers();
     }
+
+    function HideFromObat()
+    {
+        $("#FormObat").hide(500);
+    }
+    function ShowFromObat()
+    {
+        $("#FormObat").show(500);
+    }
+
+
+
+    // JAVASCRIPT START HERE
+
     
     var listUser = false;
     $("#button-4").click(function(){
@@ -445,6 +513,9 @@
         {
             Showtable();
             DisplayAllUsers();
+
+            formObat = false;
+            HideFromObat();
         }
         else
         {
@@ -452,9 +523,31 @@
         }
     });
 
-    $(document).ready(function(){
-        DisplayAllUsers();
+    var formObat = false;
+    $("#button-5").click(function(){
+        formObat = !formObat;
+        if (formObat)
+        {
+            ShowFromObat();
+
+            listUser = false;
+            Hidetable();
+        }
+        else
+        {
+            HideFromObat();
+        }
     });
+
+
+    var timer;
+    $(document).ready(function(){
+        timer = setInterval(() => {
+            DisplayAllUsers();
+        }, 3000);
+    });
+
+
 
 </script>
 </html>
