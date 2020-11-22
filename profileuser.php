@@ -71,5 +71,12 @@
             </nav>
         </div>
     </header>
+    <div id="login-box" style="text-align: center;height:250px;">
+        <h1>Profile User</h1>
+        Username<input style="margin-left:200px;" type="text" name="username" placeholder="Username" id="user"/>
+        Email<input style="margin-left:200px;" type="text" name="email" placeholder="E-mail" id="email"/>
+        <input type="submit" name="signin_submit" value="Edit Profile" id="edit-btn" />
+        <input type="submit" name="signin_submit" value="Logout" id="keluar-btn" />
+    </div>
 </body>
 </html>
