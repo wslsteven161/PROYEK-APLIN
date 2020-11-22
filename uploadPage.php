@@ -64,7 +64,7 @@
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About</a></li>
                     <!-- <li><a href="#">Contact us</a></li> -->
 
@@ -78,7 +78,7 @@
                     else
                     {
                     ?>
-                        <li><a href="signUpPage.php"><i class="fas fa-user-circle"></i> Sign up</a></li>
+                        <li><a href="signUpPage.php"><i class="fas fa-user-circle"></i>Sign up</a></li>
                     <?php
                     }
                     ?>

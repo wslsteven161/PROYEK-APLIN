@@ -10,7 +10,7 @@
     foreach($res as $key => $value)
     {
         echo "<tr>";
-        echo "<th scope='row'>" . (intval($key) + 1) . "</th>";
+        //echo "<th scope='row'>" . (intval($key) + 1) . "</th>";
         echo "<td>" . $value['username'] . "</td>";
         echo "<td>" . $value['email'] . "</td>";
         if ($value['is_disabled'] == 0)

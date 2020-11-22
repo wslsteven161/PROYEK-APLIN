@@ -67,7 +67,7 @@
                     else
                     {
                     ?>
-                        <li><a href="signUpPage.php"><i class="fas fa-user-circle"></i> Sign up</a></li>
+                        <li><a href="signUpPage.php"><i class="fas fa-user-circle"></i>Sign up</a></li>
                     <?php
                     }
                     ?>

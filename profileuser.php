@@ -56,7 +56,7 @@
                     if (isset($_COOKIE['User_LoggedIn']))
                     {
                     ?>
-                        <li><a href="#"><i class="fas fa-user-circle"></i> Profile</a></li>
+                        <li><a href="#"><i class="fas fa-user-circle"></i><?php echo $_COOKIE['User_LoggedIn'] ?></a></li>
                     <?php                         
                     }
                     else
