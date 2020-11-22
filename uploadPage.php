@@ -1,9 +1,15 @@
+<?php
+    require_once("Connection.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
+    <title>APOTEK</title>
+
     <!-- JQUERY -->
     <script src="js/jquery-3.5.1.min.js"></script>
 
@@ -25,10 +31,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-<script>
-    swal("HORE", "Profile", "warning");
-</script>
-<header class="fixed-top d-flex align-items-center header-transparent">
+
+    <header class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
             <div class="logo mr-auto">
                 <h1>APOTEK</h1>
@@ -48,7 +52,7 @@
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li><a href="index.php">Home</a></li>
+                    <li><a href="#">Home</a></li>
                     <li><a href="about.php">About</a></li>
                     <!-- <li><a href="#">Contact us</a></li> -->
 
@@ -56,7 +60,7 @@
                     if (isset($_COOKIE['User_LoggedIn']))
                     {
                     ?>
-                        <li><a href="#"><i class="fas fa-user-circle"></i> Profile</a></li>
+                        <li><a href="profileuser.php"><i class="fas fa-user-circle"></i> Profile</a></li>
                     <?php                         
                     }
                     else
@@ -71,5 +75,8 @@
             </nav>
         </div>
     </header>
+
+    
+
 </body>
 </html>

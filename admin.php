@@ -8,7 +8,7 @@
 
         if ($q1 == "admin" && $q2 == "admin")
         {
-            setcookie("admin", "1", time() + (60*5) /* 5 Menit */);
+            setcookie("admin", "1", time() + (60*30) /* 30 Menit */);
             header("Location: adminPage.php");
         }
     }
@@ -275,6 +275,8 @@
             </form>
         </div>
     </div>
-
 </body>
+<script>
+
+</script>
 </html>

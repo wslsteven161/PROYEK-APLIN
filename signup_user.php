@@ -10,20 +10,34 @@
         $q3 = $_POST['password'];
         $q4 = $_POST['cpassword'];
 
-        if ($q3 == $q4)
+
+        $res = $pdo->prepare("SELECT * FROM USERS WHERE email = :email");
+        $res->execute(array(":email" => $q2));
+        $count = $res->rowCount();
+
+        // Check Email is already registered or not
+        if ($count <= 0)
         {
-            $state = $pdo->prepare("INSERT INTO users(email, username, password) VALUES (:email,:user,:pass)");
-            try
+            // Check confirm password
+            if ($q3 == $q4) 
             {
-                $insert = $state->execute(array(':email' => $q2, ':user' => $q1, ':pass' => password_hash($q3, PASSWORD_BCRYPT)));
-                if ($insert)
+                $state = $pdo->prepare("INSERT INTO users(email, username, password) VALUES (:email,:user,:pass)");
+                try
                 {
-                    $status = True;
+                    $insert = $state->execute(array(':email' => $q2, ':user' => $q1, ':pass' => password_hash($q3, PASSWORD_BCRYPT)));
+                    if ($insert)
+                    {
+                        $status = True;
+                    }
+                }
+                catch(PDOException $e) {
+                    $status = "user_registered";
                 }
             }
-            catch(PDOException $e) {
-
-            }
+        }
+        else
+        {
+            $status = "wrong_email";
         }
     }
 

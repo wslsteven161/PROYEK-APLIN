@@ -284,6 +284,10 @@
         #button-7:hover a {
             left: 150px;
         }
+
+        .insertFormObat{
+            background-color: white;
+        }
     </style>
 </head>
 <body>
@@ -342,5 +346,111 @@
 
     </div>
 
+    <div class="container flex-container">
+        <table class="table table-dark table-bordered table-hover" style="display:none;"> 
+            <caption>List of users</caption>
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">-</th>
+                </tr>
+            </thead>
+            <tbody id="user-table">
+
+            </tbody>
+        </table>
+
+        <div class="container insertFormObat">
+            <h1>H1</h1>
+        </div>
+    </div>
+
 </body>
+<script>
+    function DisplayAllUsers()
+    {
+        $.ajax({
+            url: "Utils/getAllUsers.php",
+            data: {},
+            method: "POST",
+            success: function(result){
+
+                // METHOD 1
+                // $("#user-table").html('');
+                // userdata = JSON.parse(result);
+                // $.each(userdata, function(key, val){
+                //     $("#user-table").append(`
+                //         <tr>
+                //             <th scope="row">${key + 1}</th>
+                //             <td>${val['username']}</td>
+                //             <td>${val['email']}</td>
+                //             <td><button type="button" class="btn btn-danger">Disable Account</button></td>
+                //         </tr>
+                //     `);
+                // });
+
+                // METHOD 2
+                $("#user-table").html(result);
+            },
+            error: function(){
+
+            }
+        });
+    }
+    function Hidetable()
+    {
+        $(".table").hide(500);
+    }
+    function Showtable()
+    {
+        $(".table").show(500);
+    }
+    function DisableAccount(data)
+    {
+        $.ajax({
+            url: "Utils/alterUser.php",
+            data: {"username" : data , "type" : "disable"},
+            method: "POST",
+            success: function(){
+                swal("Success!", "User disabled successfully!", "success");
+            },
+            error: function(){
+                swal("Error!", "Error executing function!", "error");
+            }
+        });
+        DisplayAllUsers();
+    }
+    function EnableAccount(data)
+    {
+        $.ajax({
+            url: "Utils/alterUser.php",
+            data: {"username" : data , "type" : "enable"},
+            method: "POST",
+            success: function(){
+                swal("Success!", "User enabled successfully!", "success");
+            },
+            error: function(){
+                swal("Error!", "Error executing function!", "error");
+            }
+        });
+        DisplayAllUsers();
+    }
+
+    var listUser = false;
+    $("#button-4").click(function(){
+        listUser = !listUser;
+        if (listUser)
+        {
+            Showtable();
+            DisplayAllUsers();
+        }
+        else
+        {
+            Hidetable();
+        }
+    });
+
+</script>
 </html>

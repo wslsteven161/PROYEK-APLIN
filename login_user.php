@@ -2,6 +2,7 @@
     require_once("Connection.php");
 
     $status = False;
+    $ada = False;
     $dataUser;
     if ( isset($_POST['username']) && isset($_POST['password']) )
     {
@@ -18,6 +19,7 @@
             {
                 if (password_verify($q2, $val['password']))
                 {
+                    $ada = True;
                     $status = True;
                     $dataUser = $val;
                     break;
@@ -28,7 +30,7 @@
                 $status = "disabled";
             }
         }
-        if ($status)
+        if ($ada)
         {
             setcookie("User_LoggedIn", $dataUser['username'], time() + (60*60*24) /* 24 jam */ );
         }

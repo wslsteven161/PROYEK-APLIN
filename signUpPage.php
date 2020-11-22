@@ -109,9 +109,19 @@
         }
         $.post('signup_user.php', data, function(data,status) {
             let datas = JSON.parse(data);
-            if (datas['status'] == 'true' || datas['status'] == true || datas['status'] == 'true' )
+            if (datas['status'] == 'true' || datas['status'] == true || datas['status'] === 'true' )
             {
                 swal("Success!", "User added!", "success");
+                $("#signup-u").val('');$("#signup-e").val('');$("#signup-p").val('');$("#signup-cp").val('');
+            }
+            else if (datas['status'] == 'wrong_email' || datas['status'] === 'wrong_email' )
+            {
+                swal("Error!", "Email Already registered!", "error");
+                $("#signup-u").val('');$("#signup-e").val('');$("#signup-p").val('');$("#signup-cp").val('');
+            }
+            else if (datas['status'] == 'user_registered' || datas['status'] === 'user_registered' )
+            {
+                swal("Error!", "Username Already registered!", "error");
                 $("#signup-u").val('');$("#signup-e").val('');$("#signup-p").val('');$("#signup-cp").val('');
             }
             else
