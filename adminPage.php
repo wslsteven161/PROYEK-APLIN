@@ -437,7 +437,7 @@
         });
         DisplayAllUsers();
     }
-
+    
     var listUser = false;
     $("#button-4").click(function(){
         listUser = !listUser;
@@ -450,6 +450,10 @@
         {
             Hidetable();
         }
+    });
+
+    $(document).ready(function(){
+        DisplayAllUsers();
     });
 
 </script>

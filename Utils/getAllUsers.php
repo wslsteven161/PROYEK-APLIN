@@ -15,11 +15,11 @@
         echo "<td>" . $value['email'] . "</td>";
         if ($value['is_disabled'] == 0)
         {
-            echo "<td>" . "<button type='button' class='btn btn-danger' onClick='DisableAccount(" . $value['username'] . ")'>Disable Account</button>" . "</td>";
+            echo "<td>" . "<button type='button' class='btn btn-danger' onClick=" . "DisableAccount('" . $value['username'] . "')>Disable Account</button>" . "</td>";
         }
         else if ($value['is_disabled'] == 1)
         {
-            echo "<td>" . "<button type='button' class='btn btn-success' onClick='EnableAccount(" . $value['username'] . ")'>Enable Account</button>" . "</td>";
+            echo "<td>" . "<button type='button' class='btn btn-success' onClick=" . "EnableAccount('" . $value['username'] . "')>Enable Account</button>" . "</td>";
         }
         echo "</tr>";
     }

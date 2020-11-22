@@ -29,6 +29,18 @@
 
     <!-- SWEET ALERT -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <style>
+        .flex-container{
+            width: 100%;
+            margin: 50px auto;
+            padding: 50px 0 150px 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -60,7 +72,7 @@
                     if (isset($_COOKIE['User_LoggedIn']))
                     {
                     ?>
-                        <li><a href="profileuser.php"><i class="fas fa-user-circle"></i> Profile</a></li>
+                        <li><a href="profileuser.php"><i class="fas fa-user-circle"></i><?php echo $_COOKIE['User_LoggedIn'] ?></a></li>
                     <?php                         
                     }
                     else
@@ -76,7 +88,24 @@
         </div>
     </header>
 
-    
+    <div class="container flex-container">
+
+        <?php 
+        if (!isset($_COOKIE['User_LoggedIn']))
+        {
+        ?>
+
+        <div class="alert alert-danger" role="alert">
+            Only Registered User can use this feature!
+        </div>
+
+        <?php 
+        }
+        ?>
+
+    </div>
+
+
 
 </body>
 </html>
