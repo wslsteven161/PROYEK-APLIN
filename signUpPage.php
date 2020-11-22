@@ -83,11 +83,15 @@
 
         $.post('login_user.php', data, function(data,status) {
             let datas = JSON.parse(data);
-            if (datas['status'] == 'true' || datas['status'] == true || datas['status'] == 'true')
+            if (datas['status'] == 'true' || datas['status'] == true || datas['status'] === 'true')
             {
                 swal("Success!", "User signed in!", "success").then((value) => {
                     window.location.replace("index.php");
                 });
+            }
+            else if (datas['status'] == 'disabled' || datas['status'] === 'disabled')
+            {
+                swal("Failed!", "Account Disabled!", "error");
             }
             else
             {

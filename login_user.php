@@ -14,11 +14,18 @@
 
         foreach($data as $key => $val)
         {
-            if (password_verify($q2, $val['password']))
+            if ($val['is_disabled'] == 0)
             {
-                $status = True;
-                $dataUser = $val;
-                break;
+                if (password_verify($q2, $val['password']))
+                {
+                    $status = True;
+                    $dataUser = $val;
+                    break;
+                }
+            }
+            else
+            {
+                $status = "disabled";
             }
         }
         if ($status)
