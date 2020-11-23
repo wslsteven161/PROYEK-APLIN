@@ -12,6 +12,11 @@
             header("Location: adminPage.php");
         }
     }
+    if (isset($_GET['logout']))
+    {
+        setcookie("admin", "", time() - 1);
+        header("Location: index.php");
+    }
 ?>
 
 <!DOCTYPE html>

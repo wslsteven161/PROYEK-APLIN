@@ -6,7 +6,10 @@
         header("Location: index.php");
     }
 
-
+    if (isset($_POST['btnSubmit']))
+    {
+        
+    }
 ?>
 
 <!DOCTYPE html>
@@ -339,7 +342,8 @@
             <a href="#">Lihat Resep</a>
         </div>
 
-        <div class="button" id="button-7">
+        <!-- <div class="button" id="button-7"> -->
+        <div class="button" id="button-5">
             <!-- <div id="dub-arrow"><img src="#" alt="" /></div> -->
             <div id="translate"></div>
             <a href="admin.php?logout=1">LogOut</a>
@@ -366,28 +370,28 @@
         <div style="width:1000px;display:none;" id="FormObat">
             <label style="color:white;">Form Obat</label>
             <div class="container insertFormObat">
-                <form>
+                <form id="form-obat" method="POST" action="">
                     <div class="form-group">
                         <label>Nama Obat</label>
-                        <input type="text" class="form-control" placeholder="ex. Bodreksin">
+                        <input type="text" name="nama_obat" class="form-control" placeholder="ex. Bodreksin">
                     </div>
                     <div class="form-group">
                         <label>Harga Obat</label>
-                        <input type="number" class="form-control" placeholder="Rp. ">
+                        <input type="number" name="harga_obat" class="form-control" placeholder="Rp. ">
                     </div>
                     <div class="form-group">
                         <label>Stock Obat</label>
-                        <input type="number" class="form-control" placeholder="ex. 7">
+                        <input type="number" name="stock_obat" class="form-control" placeholder="ex. 7">
                     </div>
                     <div class="form-group">
                         <label>Deskripsi Obat</label>
-                        <textarea class="form-control" rows="3" placeholder="ex. Obat Batuk"></textarea>
+                        <textarea name="deskripsi_obat" class="form-control" rows="3" placeholder="ex. Obat Batuk"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Input foto obat</label>
-                        <input type="file" class="form-control-file">
+                        <input type="file" name="image_obat" class="form-control-file" id="image_obat">
                     </div>
-                    <button class="btn btn-success" style="float:right;margin-bottom:20px;">Submit</button>
+                    <button class="btn btn-success" style="float:right;margin-bottom:20px;" name="btnSubmit">Submit</button>
                 </form>
             </div>
 
@@ -423,7 +427,7 @@
 
 </body>
 <script>
-    function DisplayAllUsers()
+    functi
     {
         $.ajax({
             url: "Utils/getAllUsers.php",
@@ -467,6 +471,7 @@
             url: "Utils/alterUser.php",
             data: {"username" : data , "type" : "disable"},
             method: "POST",
+            type: 'POST',
             success: function(){
                 swal("Success!", "User disabled successfully!", "success");
             },
@@ -482,6 +487,7 @@
             url: "Utils/alterUser.php",
             data: {"username" : data , "type" : "enable"},
             method: "POST",
+            type: 'POST',
             success: function(){
                 swal("Success!", "User enabled successfully!", "success");
             },
@@ -539,12 +545,34 @@
         }
     });
 
-
     var timer;
     $(document).ready(function(){
         timer = setInterval(() => {
             DisplayAllUsers();
         }, 3000);
+
+
+        // $("#form-obat").on("submit", function(form){
+        //     form.preventDefault();
+        //     let fdata = new FormData($(this)[0]);
+
+        //     let datas = {
+        //         "data" : fdata,
+        //         "action": "insert"
+        //     };
+        //     console.log(datas);
+        //     $.ajax({
+        //         url: "Utils/ObatUtil.php",
+        //         type: "POST",
+        //         dataType: "JSON",
+        //         data: datas,
+        //         success: function(data, status){
+        //             alert(data);
+        //         }  
+        //     });
+        // });
+
+
     });
 
 
