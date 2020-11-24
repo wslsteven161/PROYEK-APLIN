@@ -30,6 +30,22 @@
     <!-- SWEET ALERT -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <style>
+        .card-img-top
+        {
+            width: 600px;
+            height: 300px;
+        }
+        .card-img-top:hover
+        {
+            width: 750px;
+            height: 450px;
+            padding: 100px -200px -200px 100px;
+            position: absolute;
+            z-index: 1000000;
+            transition: 1s;
+        }
+    </style>
 </head>
 <body>
 
@@ -162,11 +178,24 @@
                     </div>
                     <div class="penawaran-body">
                         <div class="row justify-content-center" id="HomePromotion">
-                            <div class="col-sm-2"><h1>TEST1</h1></div>
+                            <div class="col-sm-2"><a href="#"><img class="card-img-top lazyloaded" data-src="https://www.farmaku.com/uploads/banners/CETAPHIL-35-950.jpg" alt="Diskon Voucher Cetaphil" src="https://www.farmaku.com/uploads/banners/CETAPHIL-35-950.jpg"></a></div>
+                            <div class="col-sm-2"><img class="card-img-top lazyloaded" data-src="
+                https://www.farmaku.com/uploads/banners/darlie-960x5401.jpg" alt="Darlie November 40%" src="
+                https://www.farmaku.com/uploads/banners/darlie-960x5401.jpg"></div>
+                            <div class="col-sm-2"><img class="card-img-top lazyloaded" data-src="
+                https://www.farmaku.com/uploads/banners/sendodyne-960x540.jpg                " alt="Promo Sensodyne 30%" src="
+                https://www.farmaku.com/uploads/banners/sendodyne-960x540.jpg                "></div>
+                            <div class="col-sm-2"><img class="card-img-top lazyloaded" data-src="
+                https://www.farmaku.com/uploads/banners/accuchek-53.jpg                " alt="Oktober Accu-Chek 53%" src="
+                https://www.farmaku.com/uploads/banners/accuchek-53.jpg                "></div>
+                            <div class="col-sm-2"><img class="card-img-top lazyloaded" data-src="
+                https://www.farmaku.com/uploads/banners/ocbc-red.jpg                " alt="Belanja Tanpa Cemas OCBC 30%" src="
+                https://www.farmaku.com/uploads/banners/ocbc-red.jpg                "></div>
+                            <!-- <div class="col-sm-2"><h1>TEST1</h1></div>
                             <div class="col-sm-2"><h1>TEST2</h1></div>
                             <div class="col-sm-2"><h1>TEST3</h1></div>
                             <div class="col-sm-2"><h1>TEST4</h1></div>
-                            <div class="col-sm-2"><h1>TEST5</h1></div>
+                            <div class="col-sm-2"><h1>TEST5</h1></div> -->
                         </div>
                     </div>
                 </div>

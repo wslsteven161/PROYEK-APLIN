@@ -29,6 +29,11 @@
 
     <!-- SWEET ALERT -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- GOOGLE SIGN IN -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="564808401235-vgc234dnbiqgmotgd48m0gopt8f6dq1d.apps.googleusercontent.com">
+
 </head>
 <body>
 
@@ -66,7 +71,9 @@
         <div class="or">OR</div>
         <div class="right">
             <span class="loginwith">Sign in with<br />Social network</span>
-            <button class="social-signin google">Log in with Google+</button>
+            <button><div class="g-signin2" data-onsuccess="onSignIn"></div></button>
+            <!-- <button class="btn btn-google social-signin google" data-onsuccess="onSignIn">Log in with Google</button> -->
+            <!-- <button class="btn btn-lg btn-google btn-block text-uppercase btn-outline">Log in with Google</button> -->
         </div>
     </div>
 
