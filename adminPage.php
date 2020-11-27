@@ -427,7 +427,7 @@
 
 </body>
 <script>
-    functi
+    function DisplayAllUsers()
     {
         $.ajax({
             url: "Utils/getAllUsers.php",
