@@ -8,8 +8,42 @@
 
     if (isset($_POST['btnSubmit']))
     {
-        
-    }
+        $Q1 = $_POST['nama_obat'];
+        $Q2 = $_POST['harga_obat'];
+        $Q3 = $_POST['stock_obat'];
+        $Q4 = $_POST['deskripsi_obat'];
+        //$Q5 = $_POST['image_obat'];
+
+        if (isset($_FILES['image_obat']))
+        {
+            $target_dir = "uploads/";
+            $uploadOk = 0;
+
+            $file_name  = $_FILES['image_obat']['name'];
+            $file_size  = $_FILES['image_obat']['size'];
+            $file_tmp   = $_FILES['image_obat']['tmp_name'];
+            $file_type  = $_FILES['image_obat']['type'];
+            $tmp = explode('.', $file_name);
+            $file_ext   = strtolower( end($tmp) ); /*strtolower( end( explode('.',$file_name ) ));*/
+            $expensions= array("jpeg","jpg","png");
+            if( in_array($file_ext,$expensions) === false )
+            {
+                echo "<script>swal('ERROR','Only Upload (jpg, png, jpeg)','error');</script>";
+                $uploadOk = 1;
+            }
+            if($file_size > 5120000){
+                echo 'File size must be less than 5 MB';
+                $uploadOk = 1;
+            }
+            if($uploadOk == 0)
+            {
+                //move_uploaded_file($file_tmp, $target_dir . basename($file_name));
+                $filedone = $Q1 . "." . $file_ext;
+                move_uploaded_file($file_tmp, $target_dir . $filedone);
+                $pdo->query("INSERT INTO obat(nama_obat, harga_obat, stock_obat, deskripsi, image_name) VALUES ('$Q1','$Q2','$Q3','$Q4','$filedone')");
+            }
+        }
+    }   
 ?>
 
 <!DOCTYPE html>
@@ -370,7 +404,7 @@
         <div style="width:1000px;display:none;" id="FormObat">
             <label style="color:white;">Form Obat</label>
             <div class="container insertFormObat">
-                <form id="form-obat" method="POST" action="">
+                <form id="form-obat" method="POST" action="" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Nama Obat</label>
                         <input type="text" name="nama_obat" class="form-control" placeholder="ex. Bodreksin">
@@ -391,7 +425,10 @@
                         <label>Input foto obat</label>
                         <input type="file" name="image_obat" class="form-control-file" id="image_obat">
                     </div>
-                    <button class="btn btn-success" style="float:right;margin-bottom:20px;" name="btnSubmit">Submit</button>
+                    <!-- <div class="form-group">
+                        <img width="100" style="border:#000; z-index:1;position: relative; border-width:2px; float:left" height="100px" src="" id="thumbnail"/>
+                    </div> -->
+                    <button type="submit" class="btn btn-success" style="float:right;margin-bottom:20px;" name="btnSubmit">Submit</button>
                 </form>
             </div>
 
@@ -506,12 +543,12 @@
     {
         $("#FormObat").show(500);
     }
-
-
+    function GetAllObat()
+    {
+        
+    }
 
     // JAVASCRIPT START HERE
-
-    
     var listUser = false;
     $("#button-4").click(function(){
         listUser = !listUser;
@@ -552,27 +589,31 @@
         }, 3000);
 
 
-        // $("#form-obat").on("submit", function(form){
-        //     form.preventDefault();
-        //     let fdata = new FormData($(this)[0]);
+        // $("#form-obat").on("submit", function(e){
+        //     e.preventDefault();
+        //     var formData = new FormData(this);
 
-        //     let datas = {
-        //         "data" : fdata,
-        //         "action": "insert"
-        //     };
-        //     console.log(datas);
         //     $.ajax({
         //         url: "Utils/ObatUtil.php",
         //         type: "POST",
         //         dataType: "JSON",
-        //         data: datas,
+        //         cache:false,
+        //         contentType: false,
+        //         processData: false,
+        //         data: formData,
         //         success: function(data, status){
-        //             alert(data);
-        //         }  
+        //             console.log("success");
+        //             $("#thumbnail").attr('src',data);
+        //             console.log(data);
+        //         },
+        //         error: function(data){
+        //             console.log("error");
+        //             console.log(data);
+        //         }
         //     });
         // });
 
-
+        
     });
 
 
