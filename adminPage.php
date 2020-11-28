@@ -404,7 +404,7 @@
         <div style="width:1000px;display:none;" id="FormObat">
             <label style="color:white;">Form Obat</label>
             <div class="container insertFormObat">
-                <form id="form-obat" method="POST" action="" enctype="multipart/form-data">
+                <form id="form-obat" method="POST" action="adminPage.php?Obat=1" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Nama Obat</label>
                         <input type="text" name="nama_obat" class="form-control" placeholder="ex. Bodreksin">
@@ -464,12 +464,40 @@
 
 </body>
 <script>
+    function DisplayAllObat()
+    {
+        $.ajax({
+            url: "Utils/getAllObat.php",
+            data: {},
+            type: "POST",
+            success: function(data, status){
+                console.log(data);
+                let obats = JSON.parse(data);
+
+                $("#obat-table").empty();
+                obats.forEach(element => {
+                    $("#obat-table").append(`
+                    <tr>
+                        <td>${element['nama_obat']}</td>
+                        <td>${element['stock_obat']}</td>
+                        <td>Rp. ${element['harga_obat']},-</td>
+                        <td>${element['deskripsi']}</td>
+                        <td><img src="uploads/${element['image_name']}" alt="IMG" width="100" height="100"></td>
+                        <td><button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                    </tr>
+                    `); 
+                });
+
+            }
+        });
+    }
+
     function DisplayAllUsers()
     {
         $.ajax({
             url: "Utils/getAllUsers.php",
             data: {},
-            method: "POST",
+            type: "POST",
             success: function(result){
 
                 // METHOD 1
@@ -542,10 +570,7 @@
     function ShowFromObat()
     {
         $("#FormObat").show(500);
-    }
-    function GetAllObat()
-    {
-        
+        DisplayAllObat();
     }
 
     // JAVASCRIPT START HERE
@@ -588,6 +613,15 @@
             DisplayAllUsers();
         }, 3000);
 
+        <?php
+            if (isset($_GET['Obat']))
+            {
+        ?>
+            formObat = true;
+            ShowFromObat();
+        <?php 
+            }
+        ?>
 
         // $("#form-obat").on("submit", function(e){
         //     e.preventDefault();
