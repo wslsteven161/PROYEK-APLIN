@@ -206,6 +206,18 @@
 
     <div style="height:900px;"></div>
 
+    <!-- Footer -->
+    <footer class="page-footer font-small blue">
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2020 By:
+        <a href="https://j3rr7.github.io/"> Jeremy</a>
+      </div>
+      <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
 </body>
 
 <script>

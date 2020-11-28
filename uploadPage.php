@@ -234,6 +234,7 @@
     <?php 
     }   
     ?>
+    
 </body>
 <script>
     var startUpload = function(files) {
