@@ -206,6 +206,31 @@
                     </div>
                 </form>
             </div>
+
+            <div class="container">
+                <div class="js-upload-finished">
+			    	<h4>Upload history</h4>
+			    	<div class="list-group"> 
+                        <!-- <a href="#" class="list-group-item list-group-item-danger">
+                            <span class="badge alert-danger pull-right">23-11-2014</span>
+                            amended-catalogue-01.xls
+                        </a> 
+                        <a href="#" class="list-group-item list-group-item-success">
+                            <span class="badge alert-success pull-right">23-11-2014</span>
+                            amended-catalogue-01.xls
+                        </a> 
+                        <a href="#" class="list-group-item list-group-item-success">
+                            <span class="badge alert-success pull-right">23-11-2014</span>
+                            amended-catalogue-01.xls
+                        </a> 
+                        <a href="#" class="list-group-item list-group-item-success">
+                            <span class="badge alert-success pull-right">23-11-2014</span>
+                            amended-catalogue.xls
+                        </a>  -->
+                    </div>
+			    </div>
+            </div>
+
     <?php 
     }   
     ?>
