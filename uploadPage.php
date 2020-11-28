@@ -40,45 +40,75 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-        .upload-drop-zone {
-            height: 200px;
-            border-width: 2px;
-            margin-bottom: 20px;
+        .upload-container{
+            padding-bottom:20px;
+            margin-top:10px;
+            border-radius:5px;
+        }
+        .center{
+            text-align:center;  
+        }
+        #top{
+            margin-top:20px;  
+        }
+        .btn-container{
+            background:#fff;
+            border-radius:5px;
+            padding-bottom:20px;
+            margin-bottom:20px;
+        }
+        .black{
+            color: black;
+        }
+        .imgupload{
+            color:#1E2832;
+            padding-top:40px;
+            font-size:7em;
+        }
+        #namefile{
+            color:black;
+        }
+        h4>strong{
+            color:#24a0ed
+        }
+        .btn-primary{
+            border-color: #24a0ed !important;
+            color: #ffffff;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+            background-color: #24a0ed !important;
+            border-color: #24a0ed !important;
         }
 
-        /* skin.css Style*/
-        .upload-drop-zone {
-            color: #ccc;
-            border-style: dashed;
-            border-color: #ccc;
-            line-height: 200px;
-            text-align: center
+        /*these two are set to not display at start*/
+        .imgupload.ok{
+            display:none;
+            color:green;
         }
-        .upload-drop-zone.drop {
-            color: #222;
-            border-color: #222;
+        .imgupload.stop{
+            display:none;
+            color:red;
         }
-        .image-preview-input {
-            position: relative;
-            overflow: hidden;
-            margin: 0px;    
-            color: #333;
-            background-color: #fff;
-            border-color: #ccc;    
-        }
-        .image-preview-input input[type=file] {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 0;
-            padding: 0;
-            font-size: 20px;
-            cursor: pointer;
+
+        /*this sets the actual file input to overlay our button*/ 
+        #fileup{
             opacity: 0;
-            filter: alpha(opacity=0);
+            -moz-opacity: 0;
+            filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+            width:200px;
+            cursor: pointer;
+            position:absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 40px;
+            height: 50px;
         }
-        .image-preview-input-title {
-            margin-left:2px;
+
+        /*switch between input and not active input*/
+        #submitbtn{
+            display:none;
+        }
+        #fakebtn{
+            padding:5px 40px;
         }
     </style>
 </head>
@@ -128,138 +158,96 @@
         </div>
     </header>
 
-    <div class="container flex-container">
-
-        <?php 
+    <?php 
         if (!isset($_COOKIE['User_LoggedIn']))
         {
         ?>
-
-        <div class="alert alert-danger" role="alert">
-            Only Registered User can use this feature!
+        <div class="container flex-container">
+            <div class="alert alert-danger" role="alert">
+                Only Registered User can use this feature!
+            </div>
         </div>
-
         <?php 
         }
         else
         {
         ?>
+            <div class="upload-container center" style="margin-top:100px">
+                <div class="row">
+                    <div class="col-md-12 text-black">
+                        <h1 class="black">Upload Resep Dokter</h1>
+                    </div>
+                </div>
 
-        <div class="container"> <br />
-            <div class="row">
-
-                <div class="col-md-7">
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><strong>Upload files</strong> <small> </small></div>
-                        <div class="panel-body">
-                            <div class="input-group image-preview">
-                                <input placeholder="" type="text" class="form-control image-preview-filename" disabled="disabled">
-                                <!-- don't give a name === doesn't send on POST/GET --> 
-                                <span class="input-group-btn"> 
-                                <!-- image-preview-clear button -->
-                                <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
-                                <!-- image-preview-input -->
-                                <div class="btn btn-default image-preview-input"> <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
-                                    <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/>
-                                    <!-- rename it --> 
-                                </div>
-                                <button type="button" class="btn btn-labeled btn-default"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>Upload</button>
-                                </span> </div>
-                            <!-- /input-group image-preview [TO HERE]--> 
-                            
-                            <br />
-                            
-                            <!-- Drop Zone -->
-                            <div class="upload-drop-zone" id="drop-zone"> Or drag and drop files here </div>
-                            <br />
-                            
-                            <!-- Progress Bar
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"> <span class="sr-only">60% Complete</span> </div>
-                            </div>
-                            <br /> -->
-
-                            <!-- Upload Finished -->
-                            <div class="js-upload-finished">
-                                <h4>Upload history</h4>
-                                <div class="list-group">
-                                    <!-- <a href="#" class="list-group-item list-group-item-danger">
-                                        <span class="badge alert-danger pull-right">23-11-2014</span>
-                                        amended-catalogue-01.xls
-                                    </a> 
-                                    <a href="#" class="list-group-item list-group-item-success">
-                                        <span class="badge alert-success pull-right">23-11-2014</span>
-                                        amended-catalogue-01.xls
-                                    </a> 
-                                    <a href="#" class="list-group-item list-group-item-success">
-                                        <span class="badge alert-success pull-right">23-11-2014</span>
-                                        amended-catalogue-01.xls
-                                    </a> 
-                                    <a href="#" class="list-group-item list-group-item-success">
-                                        <span class="badge alert-success pull-right">23-11-2014</span>
-                                        amended-catalogue.xl
-                                    </a>  -->
-                                </div> 
+                <form name="upload" method="post" action="#" enctype="multipart/form-data" accept-charset="utf-8">
+                    <div class="row">
+                        <div class="col-md-2 mx-auto">
+                            <div class="btn-container bg-light">
+                                <!--the three icons: default, ok file (img), error file (not an img)-->
+                                <h1 class="imgupload"><i class="fa fa-file-image-o"></i></h1>
+                                <h1 class="imgupload ok"><i class="fa fa-check"></i></h1>
+                                <h1 class="imgupload stop"><i class="fa fa-times"></i></h1>
+                                <!--this field changes dinamically displaying the filename we are trying to upload-->
+                                <p id="namefile">Only pics allowed! (jpg,jpeg,bmp,png)</p>
+                                <!--our custom btn which which stays under the actual one-->
+                                <button type="button" id="btnup" class="btn btn-primary btn-lg">Browse for your pic!</button>
+                                <!--this is the actual file input, is set with opacity=0 beacause we wanna see our custom one-->
+                                <input type="file" value="" name="fileup" id="fileup" />
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-md-5">
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><strong>Download files</strong> <small> </small></div>
-                    <div class="panel-body">
-                        <button type="button" class="btn btn-labeled btn-primary"> <span class="btn-label"><i class="glyphicon glyphicon-download"></i> </span>Download catalogue</button>
-                        <button type="button" class="btn btn-labeled btn-info"> <span class="btn-label"><i class="glyphicon glyphicon-download"></i> </span>Download delta</button>
-                        <br />
+                    <!--additional fields-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--the defauld disabled btn and the actual one shown only if the three fields are valid-->
+                            <input type="submit" value="Submit!" class="btn btn-primary" id="submitbtn" />
+                            <button type="button" class="btn btn-default" disabled="disabled" id="fakebtn">Submit! <i class="fa fa-minus-circle"></i></button>
+                        </div>
                     </div>
-                    </div>
-                </div>        
-                
-                
+                </form>
             </div>
-        </div>
-
-        <!-- /container --> 
-
-        <?php 
-        }
-        ?>
-    </div>
+    <?php 
+    }   
+    ?>
 </body>
 <script>
     var startUpload = function(files) {
         console.log(files);
     }
 
-    $("#js-upload-form").on('submit', function(e){
-        var uploadFiles = $('#js-upload-files').files;
-        e.preventDefault();
+    $('#fileup').change(function(){
+        //here we take the file extension and set an array of valid extensions
+        var res=$('#fileup').val();
+        var arr = res.split("\\");
+        var filename=arr.slice(-1)[0];
+        filextension=filename.split(".");
+        filext="."+filextension.slice(-1)[0];
+        valid=[".jpg",".png",".jpeg",".bmp"];
+        //if file is not valid we show the error icon, the red alert, and hide the submit button
+        if (valid.indexOf(filext.toLowerCase())==-1){
+            $( ".imgupload" ).hide("slow");
+            $( ".imgupload.ok" ).hide("slow");
+            $( ".imgupload.stop" ).show("slow");
+        
+            $('#namefile').css({"color":"red","font-weight":700});
+            $('#namefile').html("File "+filename+" is not  pic!");
 
-        startUpload(uploadFiles);
+            $( "#submitbtn" ).hide();
+            $( "#fakebtn" ).show();
+        }else{
+            //if file is valid we show the green alert and show the valid submit
+            $( ".imgupload" ).hide("slow");
+            $( ".imgupload.stop" ).hide("slow");
+            $( ".imgupload.ok" ).show("slow");
+        
+            $('#namefile').css({"color":"green","font-weight":700});
+            $('#namefile').html(filename);
+        
+            $( "#submitbtn" ).show();
+            $( "#fakebtn" ).hide();
+        }
     });
 
-    $("#drop-zone").on('drop', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        $(this).attr('class','upload-drop-zone');
-
-        startUpload(e.dataTransfer.files)
-    });
-    $("#drop-zone").on('dragover', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        $(this).attr('class','upload-drop-zone drop');
-
-        //return false;
-    });
-    $("#drop-zone").on('dragleave', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        $(this).attr('class','upload-drop-zone');
-
-        //return false;
-    });
 
 </script>
 </html>
