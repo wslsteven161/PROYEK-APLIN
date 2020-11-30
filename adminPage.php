@@ -16,7 +16,7 @@
 
         if (isset($_FILES['image_obat']))
         {
-            $target_dir = "uploads/";
+            $target_dir = "uploads/obat/";
             $uploadOk = 0;
 
             $file_name  = $_FILES['image_obat']['name'];
@@ -482,7 +482,7 @@
                         <td>${element['stock_obat']}</td>
                         <td>Rp. ${element['harga_obat']},-</td>
                         <td>${element['deskripsi']}</td>
-                        <td><img src="uploads/${element['image_name']}" alt="IMG" width="100" height="100"></td>
+                        <td><img src="uploads/obat/${element['image_name']}" alt="IMG" width="100" height="100"></td>
                         <td><button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
                     </tr>
                     `); 

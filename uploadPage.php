@@ -179,7 +179,7 @@
                     </div>
                 </div>
 
-                <form name="upload" method="post" action="#" enctype="multipart/form-data" accept-charset="utf-8">
+                <form name="upload" method="post" action="#" enctype="multipart/form-data" accept-charset="utf-8" id="upload-form">
                     <div class="row">
                         <div class="col-md-2 mx-auto">
                             <div class="btn-container bg-light">
@@ -240,6 +240,30 @@
     var startUpload = function(files) {
         console.log(files);
     }
+
+    $('#upload-form').on('submit',function(e){
+        e.preventDefault();
+        let form = new FormData($(this)[0]);
+
+        // for(let [name, value] of form) {
+        //     console.log((`${name} = ${value}`));
+        // }
+
+        $.ajax({
+            url: "Utils/uploadReciepe.php",
+            type: "POST",
+            data: {},
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            success: function(){
+                
+            },
+            error: function(){
+
+            }
+        });
+    });
 
     $('#fileup').change(function(){
         //here we take the file extension and set an array of valid extensions
