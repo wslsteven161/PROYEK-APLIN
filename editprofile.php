@@ -135,6 +135,7 @@
         $("#edit-btn").on('click', function(){
             EditProfile = !EditProfile;
             EditStatus();
+            window.location.replace("index.php");
         });
 
     });
