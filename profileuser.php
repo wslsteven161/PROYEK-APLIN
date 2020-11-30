@@ -79,7 +79,6 @@
         <h1>Profile User</h1>
         Username<input style="margin-left:200px;" readonly type="text" name="username" placeholder="Username" id="user"/>
         Email<input style="margin-left:200px;" readonly type="text" name="email" placeholder="E-mail" id="email"/>
-        Password<input style="margin-left:200px;" readonly type="password" name="password" placeholder="Password" id="password"/>
         <input type="submit" value="Edit Profile" id="edit-btn" />
         <input type="submit" name="signin_submit" value="Logout" id="keluar-btn" />
     </div>
@@ -95,7 +94,6 @@
                 let user = JSON.parse(datas);
                 $("#user").val(user['username']);
                 $("#email").val(user['email']);
-                $("#password").val('password');
             },
             error:function(data){
 
