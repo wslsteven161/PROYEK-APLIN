@@ -1,3 +1,6 @@
+<?php
+    require_once("Connection.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,7 +88,6 @@
 </body>
 <script>
     var EditProfile = false;
-
     function EditStatus()
     {
         if (EditProfile)
@@ -125,7 +127,7 @@
                 let user = JSON.parse(datas);
                 $("#user").val(user['username']);
                 $("#email").val(user['email']);
-                $("#password").val('password');
+                $("#password").val(user['password']);
             },
             error:function(data){
 
