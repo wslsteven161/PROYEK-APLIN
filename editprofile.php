@@ -76,7 +76,7 @@
         </div>
     </header>
     <div id="login-box" style="text-align: center;height:450px;">
-        <h1>Profile User</h1>
+        <h1>Edit Profile User</h1>
         Username<input style="margin-left:200px;" readonly type="text" name="username" placeholder="Username" id="user"/>
         Email<input style="margin-left:200px;" type="text" name="email" placeholder="E-mail" id="email"/>
         Password<input style="margin-left:200px;" type="password" name="password" placeholder="Password" id="password"/>
