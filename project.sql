@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2020 at 05:41 AM
+-- Generation Time: Nov 22, 2020 at 10:13 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -27,40 +27,6 @@ USE `project`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `obat`
---
-
-CREATE TABLE `obat` (
-  `id` int(3) NOT NULL,
-  `nama_obat` varchar(30) NOT NULL,
-  `harga_obat` int(9) NOT NULL,
-  `stock_obat` int(9) NOT NULL,
-  `deskripsi` longtext DEFAULT NULL,
-  `image_name` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `obat`
---
-
-INSERT INTO `obat` (`id`, `nama_obat`, `harga_obat`, `stock_obat`, `deskripsi`, `image_name`) VALUES
-(1, 'Lob', 1, 1, '1', 'Lob.png');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reciepes`
---
-
-CREATE TABLE `reciepes` (
-  `id` int(5) NOT NULL,
-  `user_id` varchar(60) NOT NULL,
-  `picture` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -76,45 +42,19 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`email`, `username`, `password`, `is_disabled`) VALUES
-('12@mail.com', '1', '$2y$10$UEZ8cl.F4H7WOBNNoClWPuxaufvfk4ThqLO0IWVgpZr.RqEkwSMg2', 0);
+('1@mail.com', '1', '$2y$10$90iqz.Pdc//L/DRGggraQuFWUx/2qMzYdTXkqt/0AOX2j/.0.7GNq', 0),
+('2@mail.com', '2', '$2y$10$npvQ3lcig6jo.i65QBpn/enfQRyT3EYEyAoSWgppKomPtBt7hEnkW', 0),
+('4@mail.com', '4', '$2y$10$Yyw/DmK08ODD0EI1w5Q51.zPzr/2/MtZX5mfmBJSI4xcAJ0FIHDH6', 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `obat`
---
-ALTER TABLE `obat`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `reciepes`
---
-ALTER TABLE `reciepes`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`username`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `obat`
---
-ALTER TABLE `obat`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `reciepes`
---
-ALTER TABLE `reciepes`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

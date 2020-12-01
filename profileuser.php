@@ -75,15 +75,47 @@
             </nav>
         </div>
     </header>
-    <div id="login-box" style="text-align: center;height:300px;">
+    <div id="login-box" style="text-align: center;height:450px;">
         <h1>Profile User</h1>
         Username<input style="margin-left:200px;" readonly type="text" name="username" placeholder="Username" id="user"/>
         Email<input style="margin-left:200px;" readonly type="text" name="email" placeholder="E-mail" id="email"/>
+        Password<input style="margin-left:200px;" readonly type="password" name="password" placeholder="Password" id="password"/>
         <input type="submit" value="Edit Profile" id="edit-btn" />
         <input type="submit" name="signin_submit" value="Logout" id="keluar-btn" />
     </div>
 </body>
-<script> 
+<script>
+    var EditProfile = false;
+
+    function EditStatus()
+    {
+        if (EditProfile)
+        {
+            $("#email").removeAttr('readonly');
+            $("#password").removeAttr('readonly');
+            $("#password").val('');
+        }
+        else
+        {
+            // ToDo upddate data user here
+            $.ajax({
+                url: "Utils/updateDataUser.php",
+                type: "POST",
+                data: {"username" : $('#user').val(), "email" : $("#email").val(), "password" : $("#password").val() },
+                success:function(data){
+                    swal('Success!', 'Berhasil Update Profile', 'success');
+                },
+                error:function(){
+                    swal('Error!', 'Something wrong', 'error');
+                }
+            });
+
+            $("#email").attr('readonly','');
+            $("#password").attr('readonly','');
+            $("#password").val('password');
+        }
+    }
+    
     $(document).ready(function(){
 
         $.ajax({
@@ -94,6 +126,7 @@
                 let user = JSON.parse(datas);
                 $("#user").val(user['username']);
                 $("#email").val(user['email']);
+                $("#password").val('password');
             },
             error:function(data){
 
@@ -101,7 +134,8 @@
         });
 
         $("#edit-btn").on('click', function(){
-            window.location.replace("editprofile.php");
+            EditProfile = !EditProfile;
+            EditStatus();
         });
 
         $("#keluar-btn").on('click', function(){
