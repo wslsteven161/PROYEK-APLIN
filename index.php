@@ -70,7 +70,7 @@
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="about.php">About</a></li>
+                    <li><a href="cabang.php">Cabang</a></li>
                     <!-- <li><a href="#">Contact us</a></li> -->
 
                     <?php 

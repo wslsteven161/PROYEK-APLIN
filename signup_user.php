@@ -34,6 +34,10 @@
                     $status = "user_registered";
                 }
             }
+            else 
+            {
+                $status = "wrong_password";
+            }
         }
         else
         {

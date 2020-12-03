@@ -38,7 +38,7 @@
             if($uploadOk == 0)
             {
                 //move_uploaded_file($file_tmp, $target_dir . basename($file_name));
-                $filedone = $Q1 . "." . $file_ext;
+                $filedone = $Q1 . "" . "." . $file_ext;
                 move_uploaded_file($file_tmp, $target_dir . $filedone);
                 $pdo->query("INSERT INTO obat(nama_obat, harga_obat, stock_obat, deskripsi, image_name) VALUES ('$Q1','$Q2','$Q3','$Q4','$filedone')");
             }
@@ -371,6 +371,11 @@
             <a href="javascript:void(0)">Tambah/Edit Obat</a>
         </div>
 
+        <div class="button" id="button-7">
+            <div id="translate"></div>
+            <a href="javascript:void(0)">Cabang</a>
+        </div>
+
         <div class="button" id="button-6">
             <div id="spin"></div>
             <a href="#">Lihat Resep</a>
@@ -460,6 +465,59 @@
             </table>
         </div>
 
+        <div style="width:1000px;display:none;" id="FormCabang">
+            <label style="color:white;">Form Cabang</label>
+            <div class="container insertFormObat">
+                <form id="form-obat" method="POST" action="adminPage.php?Obat=1" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Nama Cabang</label>
+                        <input type="text" name="nama_cabang" class="form-control" placeholder="Nama Cabang">
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Jalan</label>
+                        <input type="text" name="nama_jalan" class="form-control" placeholder="Jl. ">
+                    </div>
+                    <div class="form-group">
+                        <label>Nomor Telepon</label>
+                        <input type="number" name="nomor_telepon" class="form-control" placeholder="0123456789">
+                    </div>
+                    <div class="form-group">
+                        <label>Input Foto Cabang</label>
+                        <input type="file" name="image_cabang" class="form-control-file" id="image_cabang">
+                    </div>
+                    <!-- <div class="form-group">
+                        <img width="100" style="border:#000; z-index:1;position: relative; border-width:2px; float:left" height="100px" src="" id="thumbnail"/>
+                    </div> -->
+                    <button type="submit" class="btn btn-success" style="float:right;margin-bottom:20px;" name="btnSubmit">Submit</button>
+                </form>
+            </div>
+
+            <h1 style="color:gray;">List Obat</h1>
+            <table class="table table-dark table-bordered table-hover">
+                <caption>List of obat</caption>
+                <thead>
+                    <tr>
+                        <th>Nama Cabang</th>
+                        <th>Jalan</th>
+                        <th>Nomor Telepon</th>
+                        <th>Foto</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cabang-table">
+
+                    <!-- <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                    </tr> -->
+
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </body>
@@ -483,6 +541,32 @@
                         <td>Rp. ${element['harga_obat']},-</td>
                         <td>${element['deskripsi']}</td>
                         <td><img src="uploads/obat/${element['image_name']}" alt="IMG" width="100" height="100"></td>
+                        <td><button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                    </tr>
+                    `); 
+                });
+
+            }
+        });
+    }
+    function DisplayAllCabang()
+    {
+        $.ajax({
+            url: "Utils/getAllCabang.php",
+            data: {},
+            type: "POST",
+            success: function(data, status){
+                console.log(data);
+                let obats = JSON.parse(data);
+
+                $("#cabang-table").empty();
+                obats.forEach(element => {
+                    $("#cabang-table").append(`
+                    <tr>
+                        <td>${element['nama']}</td>
+                        <td>${element['jalan']}</td>
+                        <td>${element['nomortelpon']}</td>
+                        <td><img src="uploads/obat/${element['foto']}" alt="IMG" width="100" height="100"></td>
                         <td><button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
                     </tr>
                     `); 
@@ -573,6 +657,16 @@
         DisplayAllObat();
     }
 
+    function HideFromCabang()
+    {
+        $("#FormCabang").hide(500);
+    }
+    function ShowFromCabang()
+    {
+        $("#FormCabang").show(500);
+        DisplayAllCabang();
+    }
+
     // JAVASCRIPT START HERE
     var listUser = false;
     $("#button-4").click(function(){
@@ -604,6 +698,24 @@
         else
         {
             HideFromObat();
+        }
+    });
+
+    var formCabang = false;
+    $("#button-7").click(function(){
+        formCabang = !formCabang;
+        if (formCabang)
+        {
+            ShowFromCabang();
+
+            listUser = false;
+            formObat = false;
+            Hidetable();
+            HideFromObat();
+        }
+        else
+        {
+            HideFromCabang();
         }
     });
 

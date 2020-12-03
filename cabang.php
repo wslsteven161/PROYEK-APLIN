@@ -25,9 +25,6 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-<script>
-    swal("HORE", "ABOUT", "warning");
-</script>
 <header class="fixed-top d-flex align-items-center header-transparent">
         <div class="container d-flex align-items-center">
             <div class="logo mr-auto">
@@ -49,7 +46,7 @@
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="#">Cabang</a></li>
                     <!-- <li><a href="#">Contact us</a></li> -->
 
                     <?php 

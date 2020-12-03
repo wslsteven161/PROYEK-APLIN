@@ -131,6 +131,11 @@
                 swal("Error!", "Username Already registered!", "error");
                 $("#signup-u").val('');$("#signup-e").val('');$("#signup-p").val('');$("#signup-cp").val('');
             }
+            else if (datas['status'] == 'wrong_password' || datas['status'] === 'wrong_password' )
+            {
+                swal("Error!", "Wrong Confirm Password!", "error");
+                $("#signup-u").val('');$("#signup-e").val('');$("#signup-p").val('');$("#signup-cp").val('');
+            }
             else
             {
                 swal("Error!", "Some data wrong!", "error");
