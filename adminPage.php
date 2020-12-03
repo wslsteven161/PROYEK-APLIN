@@ -44,6 +44,43 @@
             }
         }
     }   
+
+    if (isset($_POST['btnSubmitCabang']))
+    {
+        $Q1 = $_POST['nama_cabang'];
+        $Q2 = $_POST['nama_jalan'];
+        $Q3 = $_POST['nomor_telepon'];
+
+        if (isset($_FILES['image_cabang']))
+        {
+            $target_dir = "uploads/cabang/";
+            $uploadOk = 0;
+
+            $file_name  = $_FILES['image_cabang']['name'];
+            $file_size  = $_FILES['image_cabang']['size'];
+            $file_tmp   = $_FILES['image_cabang']['tmp_name'];
+            $file_type  = $_FILES['image_cabang']['type'];
+            $tmp = explode('.', $file_name);
+            $file_ext   = strtolower( end($tmp) ); /*strtolower( end( explode('.',$file_name ) ));*/
+            $expensions= array("jpeg","jpg","png");
+            if( in_array($file_ext,$expensions) === false )
+            {
+                echo "<script>swal('ERROR','Only Upload (jpg, png, jpeg)','error');</script>";
+                $uploadOk = 1;
+            }
+            if($file_size > 5120000){
+                echo 'File size must be less than 5 MB';
+                $uploadOk = 1;
+            }
+            if($uploadOk == 0)
+            {
+                //move_uploaded_file($file_tmp, $target_dir . basename($file_name));
+                $filedone = $Q1 . "" . "." . $file_ext;
+                move_uploaded_file($file_tmp, $target_dir . $filedone);
+                $pdo->query("INSERT INTO cabang(nama, jalan, nomortelpon, foto) VALUES ('$Q1','$Q2','$Q3','$filedone')");
+            }
+        }
+    }   
 ?>
 
 <!DOCTYPE html>
@@ -468,7 +505,7 @@
         <div style="width:1000px;display:none;" id="FormCabang">
             <label style="color:white;">Form Cabang</label>
             <div class="container insertFormObat">
-                <form id="form-obat" method="POST" action="adminPage.php?Obat=1" enctype="multipart/form-data">
+                <form id="form-cabang" method="POST" action="adminPage.php?Cabang=1" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Nama Cabang</label>
                         <input type="text" name="nama_cabang" class="form-control" placeholder="Nama Cabang">
@@ -488,13 +525,13 @@
                     <!-- <div class="form-group">
                         <img width="100" style="border:#000; z-index:1;position: relative; border-width:2px; float:left" height="100px" src="" id="thumbnail"/>
                     </div> -->
-                    <button type="submit" class="btn btn-success" style="float:right;margin-bottom:20px;" name="btnSubmit">Submit</button>
+                    <button type="submit" class="btn btn-success" style="float:right;margin-bottom:20px;" name="btnSubmitCabang">Submit</button>
                 </form>
             </div>
 
-            <h1 style="color:gray;">List Obat</h1>
+            <h1 style="color:gray;">List Cabang</h1>
             <table class="table table-dark table-bordered table-hover">
-                <caption>List of obat</caption>
+                <caption>List of Cabang</caption>
                 <thead>
                     <tr>
                         <th>Nama Cabang</th>
@@ -566,7 +603,7 @@
                         <td>${element['nama']}</td>
                         <td>${element['jalan']}</td>
                         <td>${element['nomortelpon']}</td>
-                        <td><img src="uploads/obat/${element['foto']}" alt="IMG" width="100" height="100"></td>
+                        <td><img src="uploads/cabang/${element['foto']}" alt="IMG" width="100" height="100"></td>
                         <td><button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
                     </tr>
                     `); 
