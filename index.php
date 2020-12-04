@@ -156,7 +156,7 @@
                             </a>
                         </div>
                         <div class="col">
-                            <a href="#">
+                            <a href="browseitem.php">
                                 <div class="fixed">
                                     <img class="effect" src="images/grid.svg" alt="Card image cap">
                                     <h4>Browse Item</h4>
