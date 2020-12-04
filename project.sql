@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2020 at 10:13 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Waktu pembuatan: 04 Des 2020 pada 08.31
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.3.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -27,9 +26,72 @@ USE `project`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `cabang`
 --
 
+DROP TABLE IF EXISTS `cabang`;
+CREATE TABLE `cabang` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `jalan` varchar(255) DEFAULT NULL,
+  `nomortelpon` int(255) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `cabang`
+--
+
+INSERT INTO `cabang` (`id`, `nama`, `jalan`, `nomortelpon`, `foto`) VALUES
+(1, 'qwe', 'q', 3, 'qwe.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `obat`
+--
+
+DROP TABLE IF EXISTS `obat`;
+CREATE TABLE `obat` (
+  `id` int(3) NOT NULL,
+  `nama_obat` varchar(30) NOT NULL,
+  `harga_obat` int(9) NOT NULL,
+  `stock_obat` int(9) NOT NULL,
+  `deskripsi` longtext DEFAULT NULL,
+  `image_name` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `obat`
+--
+
+INSERT INTO `obat` (`id`, `nama_obat`, `harga_obat`, `stock_obat`, `deskripsi`, `image_name`) VALUES
+(1, 'asd', 23, 2, 'asdasdada', 'asd.jpg'),
+(2, 'asd', 222, 1, 'asdadasd', 'asd.jpg'),
+(3, 'asd', 222, 1, 'asdadasd', 'asd.jpg'),
+(4, 'asd', 222, 1, 'asdadasd', 'asd.jpg'),
+(5, 'asd', 222, 1, 'asdadasd', 'asd.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `reciepes`
+--
+
+DROP TABLE IF EXISTS `reciepes`;
+CREATE TABLE `reciepes` (
+  `id` int(5) NOT NULL,
+  `user_id` varchar(60) NOT NULL,
+  `picture` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `users`
+--
+
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `email` varchar(60) NOT NULL,
   `username` varchar(60) NOT NULL,
@@ -38,23 +100,64 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`email`, `username`, `password`, `is_disabled`) VALUES
-('1@mail.com', '1', '$2y$10$90iqz.Pdc//L/DRGggraQuFWUx/2qMzYdTXkqt/0AOX2j/.0.7GNq', 0),
-('2@mail.com', '2', '$2y$10$npvQ3lcig6jo.i65QBpn/enfQRyT3EYEyAoSWgppKomPtBt7hEnkW', 0),
-('4@mail.com', '4', '$2y$10$Yyw/DmK08ODD0EI1w5Q51.zPzr/2/MtZX5mfmBJSI4xcAJ0FIHDH6', 0);
+('12@mail.com', '1', '$2y$10$UEZ8cl.F4H7WOBNNoClWPuxaufvfk4ThqLO0IWVgpZr.RqEkwSMg2', 0),
+('a@gmail.com', 'a', '$2y$10$A6HH4nx8FWm/MXWPbJZ65u5QYyF7u90hAlB7uGYxKqJHdGbI/YueW', 0),
+('b@gmail.com', 'b', '$2y$10$sC4bqIHvFoFqdGjNKmyG2O1v9xfUWJWXxBdgGHqfkrvFsM9tBnESK', 0),
+('as@gmail.com', 'qwe', '$2y$10$MD8K4.s9DRJywG59a1.WqOn8JK1CPbm2qwVD01zmMUoXGNaRxbGiG', 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `cabang`
+--
+ALTER TABLE `cabang`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `obat`
+--
+ALTER TABLE `obat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `reciepes`
+--
+ALTER TABLE `reciepes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`username`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `cabang`
+--
+ALTER TABLE `cabang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `obat`
+--
+ALTER TABLE `obat`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `reciepes`
+--
+ALTER TABLE `reciepes`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
