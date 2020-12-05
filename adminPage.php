@@ -595,7 +595,6 @@
             success: function(data, status){
                 console.log(data);
                 let obats = JSON.parse(data);
-
                 $("#cabang-table").empty();
                 obats.forEach(element => {
                     $("#cabang-table").append(`
