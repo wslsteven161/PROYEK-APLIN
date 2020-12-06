@@ -212,9 +212,22 @@
 
             <div class="container">
                 <div class="js-upload-finished">
-			    	<h4>Upload history</h4>
-			    	<div class="list-group"> 
-                        <!-- <a href="#" class="list-group-item list-group-item-danger">
+                    <h4>Upload history</h4>
+                    
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Filename</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="upload-history">
+                        </tbody>
+                    </table>
+			    	<!-- <div class="list-group"> 
+                        <a href="#" class="list-group-item list-group-item-danger">
                             <span class="badge alert-danger pull-right">23-11-2014</span>
                             amended-catalogue-01.xls
                         </a> 
@@ -229,11 +242,10 @@
                         <a href="#" class="list-group-item list-group-item-success">
                             <span class="badge alert-success pull-right">23-11-2014</span>
                             amended-catalogue.xls
-                        </a>  -->
-                    </div>
+                        </a>
+                    </div> -->
 			    </div>
             </div>
-
     <?php 
     }   
     ?>
@@ -247,7 +259,7 @@
     $('#upload-form').on('submit',function(e){
         e.preventDefault();
         let form = new FormData($(this)[0]);
-        form.append('user_id',Cookies.get('User_LoggedIn'));
+        form.append('user_id', Cookies.get('User_LoggedIn'));
         // for(let [name, value] of form) {
         //     console.log((`${name} = ${value}`));
         // }
@@ -271,9 +283,14 @@
                 {
                     console.log(value);
                 }
-                $('#namefile').html('');
+                $('#namefile').html('Only pics allowed! (jpg,jpeg,bmp,png)');
+                $('#namefile').css({"color":"black","font-weight":""});
+                $( ".imgupload" ).show("slow");
+                $( ".imgupload.stop" ).hide("slow");
+                $( ".imgupload.ok" ).hide("slow");
                 $( "#submitbtn" ).hide();
                 $( "#fakebtn" ).show();
+                getAllUploadsUser();
             },
             error: function(){
 
@@ -313,6 +330,34 @@
         }
     });
 
+    function getAllUploadsUser()
+    {
+        $.ajax({
+            url: "Utils/getUploadHistory.php",
+            type: "POST",
+            data: {"user_id" : Cookies.get('User_LoggedIn')},
+            success: function(value){
+                let datas = JSON.parse(value);
+                $("#upload-history").empty();
+                $.each(datas, function(index, value){
+                    $("#upload-history").append(`
+                        <tr>
+                            <th scope="row">${(index + 1)}</th>
+                            <td><a href="uploads/resep/${value['picture']}" target="_blank">${value['picture']}</a></td>
+                            <td>${value['status'] == 0 ? "<div class='alert alert-info' role='alert'>Please Wait for Reviewer!</div>" : "<div class='alert alert-success' role='alert'><a href='#' class='alert-link'>Click Here to see review</a></div>"}</td>
+                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+                        </tr>
+                    `);
+                });
+            },
+            error: function(){
 
+            }
+        });
+    }
+
+    $(document).ready(function(){
+        getAllUploadsUser();
+    });
 </script>
 </html>
