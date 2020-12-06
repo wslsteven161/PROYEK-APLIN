@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Des 2020 pada 08.31
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.3.22
+-- Generation Time: Dec 06, 2020 at 05:41 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -26,32 +27,9 @@ USE `project`;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cabang`
+-- Table structure for table `obat`
 --
 
-DROP TABLE IF EXISTS `cabang`;
-CREATE TABLE `cabang` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(255) DEFAULT NULL,
-  `jalan` varchar(255) DEFAULT NULL,
-  `nomortelpon` int(255) DEFAULT NULL,
-  `foto` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `cabang`
---
-
-INSERT INTO `cabang` (`id`, `nama`, `jalan`, `nomortelpon`, `foto`) VALUES
-(1, 'qwe', 'q', 3, 'qwe.jpg');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `obat`
---
-
-DROP TABLE IF EXISTS `obat`;
 CREATE TABLE `obat` (
   `id` int(3) NOT NULL,
   `nama_obat` varchar(30) NOT NULL,
@@ -62,7 +40,7 @@ CREATE TABLE `obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `obat`
+-- Dumping data for table `obat`
 --
 
 INSERT INTO `obat` (`id`, `nama_obat`, `harga_obat`, `stock_obat`, `deskripsi`, `image_name`) VALUES
@@ -75,10 +53,9 @@ INSERT INTO `obat` (`id`, `nama_obat`, `harga_obat`, `stock_obat`, `deskripsi`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `reciepes`
+-- Table structure for table `reciepes`
 --
 
-DROP TABLE IF EXISTS `reciepes`;
 CREATE TABLE `reciepes` (
   `id` int(5) NOT NULL,
   `user_id` varchar(60) NOT NULL,
@@ -88,10 +65,9 @@ CREATE TABLE `reciepes` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `email` varchar(60) NOT NULL,
   `username` varchar(60) NOT NULL,
@@ -100,7 +76,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`email`, `username`, `password`, `is_disabled`) VALUES
@@ -114,47 +90,35 @@ INSERT INTO `users` (`email`, `username`, `password`, `is_disabled`) VALUES
 --
 
 --
--- Indeks untuk tabel `cabang`
---
-ALTER TABLE `cabang`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `obat`
+-- Indexes for table `obat`
 --
 ALTER TABLE `obat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `reciepes`
+-- Indexes for table `reciepes`
 --
 ALTER TABLE `reciepes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`username`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `cabang`
---
-ALTER TABLE `cabang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `obat`
+-- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `reciepes`
+-- AUTO_INCREMENT for table `reciepes`
 --
 ALTER TABLE `reciepes`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
