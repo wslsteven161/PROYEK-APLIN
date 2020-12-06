@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2020 at 05:41 AM
+-- Generation Time: Dec 06, 2020 at 03:53 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -23,6 +23,20 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `project` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `project`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cabang`
+--
+
+CREATE TABLE `cabang` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `jalan` varchar(255) DEFAULT NULL,
+  `nomortelpon` int(255) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -62,6 +76,33 @@ CREATE TABLE `reciepes` (
   `picture` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `reciepes`
+--
+
+INSERT INTO `reciepes` (`id`, `user_id`, `picture`) VALUES
+(1, '1', '1_1607266222.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `resepdetail`
+--
+
+CREATE TABLE `resepdetail` (
+  `reciepes_id` int(5) NOT NULL,
+  `time` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` int(3) NOT NULL DEFAULT 0,
+  `message` longtext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `resepdetail`
+--
+
+INSERT INTO `resepdetail` (`reciepes_id`, `time`, `status`, `message`) VALUES
+(1, '2020-12-06 21:50:22', 1, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -80,10 +121,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`email`, `username`, `password`, `is_disabled`) VALUES
-('12@mail.com', '1', '$2y$10$UEZ8cl.F4H7WOBNNoClWPuxaufvfk4ThqLO0IWVgpZr.RqEkwSMg2', 0),
-('a@gmail.com', 'a', '$2y$10$A6HH4nx8FWm/MXWPbJZ65u5QYyF7u90hAlB7uGYxKqJHdGbI/YueW', 0),
-('b@gmail.com', 'b', '$2y$10$sC4bqIHvFoFqdGjNKmyG2O1v9xfUWJWXxBdgGHqfkrvFsM9tBnESK', 0),
-('as@gmail.com', 'qwe', '$2y$10$MD8K4.s9DRJywG59a1.WqOn8JK1CPbm2qwVD01zmMUoXGNaRxbGiG', 0);
+('1@mail.com', '1', '$2y$10$A8veSJWZMvfaocpeKcIgn.Alxb9aI4QVlBfPo9V2Qh/Darww3dWf6', 0),
+('5', '5', '$2y$10$Xda5mb.WnhL0Df.Z/kCJKuMntBZdakMIUNj0UI2hqi.Sa8MaDQ0r6', 0),
+('', '6', '$2y$10$arllNSXs4KDm4X9fU/00qePlJulcbuyWQuW5CEiAE/V0M6JBS/L16', 0);
 
 --
 -- Indexes for dumped tables
@@ -121,7 +161,7 @@ ALTER TABLE `obat`
 -- AUTO_INCREMENT for table `reciepes`
 --
 ALTER TABLE `reciepes`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
