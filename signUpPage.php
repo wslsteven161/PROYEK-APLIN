@@ -34,6 +34,8 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id" content="564808401235-vgc234dnbiqgmotgd48m0gopt8f6dq1d.apps.googleusercontent.com">
 
+    <!-- JQUERY COOKIE PLUGIN -->
+    <script src="js/js.cookie-2.2.1.min.js"></script>
 </head>
 <body>
 
@@ -62,10 +64,10 @@
     <div id="login-box">
         <div class="left">
             <h1>Sign up</h1>
-            <input type="text" name="username" placeholder="Username" id="signup-u"/>
-            <input type="text" name="email" placeholder="E-mail" id="signup-e"/>
-            <input type="password" name="password" placeholder="Password" id="signup-p"/>
-            <input type="password" name="password2" placeholder="Retype password" id="signup-cp"/>
+            <input type="text" name="username" placeholder="Username" id="signup-u" required/>
+            <input type="text" name="email" placeholder="E-mail" id="signup-e" required/>
+            <input type="password" name="password" placeholder="Password" id="signup-p" required/>
+            <input type="password" name="password2" placeholder="Retype password" id="signup-cp" required/>
             <input type="submit" name="signup_submit" value="Sign me up" id="signup-btn"/>
         </div>
         <div class="or">OR</div>
@@ -114,7 +116,9 @@
             "password" : $("#signup-p").val(),
             "cpassword" : $("#signup-cp").val()
         }
-        $.post('signup_user.php', data, function(data,status) {
+        if (data['username'] != '' || data['email'] != '' || data['password'] != '' || data['cpassword'] != '')
+        {
+            $.post('signup_user.php', data, function(data,status) {
             let datas = JSON.parse(data);
             if (datas['status'] == 'true' || datas['status'] == true || datas['status'] === 'true' )
             {
@@ -141,7 +145,17 @@
                 swal("Error!", "Some data wrong!", "error");
             }
         });
+        }
     });
 
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();   
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        Cookies.set('User_LoggedIn', profile.getEmail(), { expires: (60*60*24) });
+        window.location.replace('index.php');
+    }
 </script>
 </html>
