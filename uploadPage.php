@@ -30,6 +30,9 @@
     <!-- SWEET ALERT -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <!-- JQUERY COOKIE PLUGIN -->
+    <script src="js/js.cookie-2.2.1.min.js"></script>
+
     <style>
         .flex-container{
             width: 100%;
@@ -244,20 +247,33 @@
     $('#upload-form').on('submit',function(e){
         e.preventDefault();
         let form = new FormData($(this)[0]);
-
+        form.append('user_id',Cookies.get('User_LoggedIn'));
         // for(let [name, value] of form) {
         //     console.log((`${name} = ${value}`));
         // }
-
         $.ajax({
             url: "Utils/uploadReciepe.php",
             type: "POST",
-            data: {},
+            data: form,
             enctype: 'multipart/form-data',
             processData: false,
             contentType: false,
-            success: function(){
-                
+            success: function(value){
+                if (value != 'bye' || value != 'error' || value != 'error2')
+                {
+                    swal('Success!', 'Success Upload File','success');
+                }
+                else if (value == 'error2')
+                {
+                    swal('Error!', 'Max 5Mb','error');
+                }
+                else
+                {
+                    console.log(value);
+                }
+                $('#namefile').html('');
+                $( "#submitbtn" ).hide();
+                $( "#fakebtn" ).show();
             },
             error: function(){
 
@@ -266,14 +282,13 @@
     });
 
     $('#fileup').change(function(){
-        //here we take the file extension and set an array of valid extensions
         var res=$('#fileup').val();
         var arr = res.split("\\");
         var filename=arr.slice(-1)[0];
         filextension=filename.split(".");
         filext="."+filextension.slice(-1)[0];
         valid=[".jpg",".png",".jpeg",".bmp"];
-        //if file is not valid we show the error icon, the red alert, and hide the submit button
+        // if file is not valid show the error icon, the red alert, and hide the submit button
         if (valid.indexOf(filext.toLowerCase())==-1){
             $( ".imgupload" ).hide("slow");
             $( ".imgupload.ok" ).hide("slow");
@@ -285,7 +300,7 @@
             $( "#submitbtn" ).hide();
             $( "#fakebtn" ).show();
         }else{
-            //if file is valid we show the green alert and show the valid submit
+            //if file is valid show the green alert and show the valid submit
             $( ".imgupload" ).hide("slow");
             $( ".imgupload.stop" ).hide("slow");
             $( ".imgupload.ok" ).show("slow");
