@@ -155,23 +155,39 @@
             </nav>
         </div>
     </header>
+    <h1 style="color:gray;">List Obat</h1>
+    <table class="table table-dark table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nama Obat</th>
+                <th>Stock</th>
+                <th>Harga</th>
+                <th>Deskripsi</th>
+                <th>Foto</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="obat-table">
+
+        </tbody>
+    </table>
 </body>
-<script>
-    // $(document).ready(function(){
-    //     $.ajax({
-    //         url:"Utils/getAllObat.php",
-    //         type: "POST",
-    //         data: "HTML",
-    //         success: function(datas, status){
-    //             let user = JSON.parse(datas);
-    //             $("#user").val(user['username']);
-    //             $("#email").val(user['email']);
-    //             $("#password").val('password');
-    //         },
-    //         error:function(data){
+<!-- <script>
+    $(document).ready(function(){
+        $.ajax({
+            url:"Utils/getAllObat.php",
+            type: "POST",
+            data: "HTML",
+            success: function(datas, status){
+                let user = JSON.parse(datas);
+                $("#user").val(user['username']);
+                $("#email").val(user['email']);
+                $("#password").val('password');
+            },
+            error:function(data){
                 
-    //         }
-    //     });
-    // });
-</script>
+            }
+        });
+    });
+</script> -->
 </html>
