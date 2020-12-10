@@ -1,7 +1,10 @@
 <?php
     require_once("Connection.php");
-?>
+    if (isset($_POST['detailobat'])) {
 
+    }
+    // $dataobat = 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -133,7 +136,7 @@
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="cabang.php">cabang</a></li>
+                    <li><a href="cabang.php">Cabang</a></li>
                     <!-- <li><a href="#">Contact us</a></li> -->
 
                     <?php 
@@ -172,22 +175,34 @@
         </tbody>
     </table>
 </body>
-<!-- <script>
+<script>
     $(document).ready(function(){
         $.ajax({
-            url:"Utils/getAllObat.php",
+            url: "Utils/getAllObat.php",
+            data: {},
             type: "POST",
-            data: "HTML",
-            success: function(datas, status){
-                let user = JSON.parse(datas);
-                $("#user").val(user['username']);
-                $("#email").val(user['email']);
-                $("#password").val('password');
-            },
-            error:function(data){
-                
+            success: function(data, status){
+                console.log(data);
+                let obats = JSON.parse(data);
+                $("#obat-table").empty();
+                obats.forEach(element => {
+                    $("#obat-table").append(`
+                    <tr>
+                        <td>${element['nama_obat']}</td>
+                        <td>${element['stock_obat']}</td>
+                        <td>Rp. ${element['harga_obat']},-</td>
+                        <td>${element['deskripsi']}</td>
+                        <td><img src="uploads/obat/${element['image_name']}" alt="IMG" width="100" height="100"></td>
+                        <td>
+                            <form action="#" method="post">
+                                <button type="button" class="btn btn-danger btn-rounded" name="detailobat">Detail Obat</button>
+                            </form>
+                        </td>
+                    </tr>
+                    `); 
+                });
             }
         });
     });
-</script> -->
+</script>
 </html>
