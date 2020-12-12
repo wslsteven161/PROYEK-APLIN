@@ -68,5 +68,43 @@
             </nav>
         </div>
     </header>
+    <h1 style="color:gray;">Cabang</h1>
+    <table class="table table-dark table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nama Cabang</th>
+                <th>Jalan</th>
+                <th>No. Telepon</th>
+                <th>Foto</th>
+            </tr>
+        </thead>
+        <tbody id="cabang-table">
+
+        </tbody>
+    </table>
 </body>
+<script>
+    $(document).ready(function(){
+        $.ajax({
+            url: "Utils/getAllCabang.php",
+            data: {},
+            type: "POST",
+            success: function(data, status){
+                console.log(data);
+                let obats = JSON.parse(data);
+                $("#cabang-table").empty();
+                obats.forEach(element => {
+                    $("#cabang-table").append(`
+                    <tr>
+                        <td>${element['nama']}</td>
+                        <td>${element['jalan']}</td>
+                        <td>${element['nomortelpon']}</td>
+                        <td><img src="uploads/cabang/${element['foto']}" alt="IMG" width="100" height="100"></td>
+                    </tr>
+                    `); 
+                });
+            }
+        });
+    });
+</script>
 </html>
