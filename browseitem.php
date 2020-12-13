@@ -1,9 +1,5 @@
 <?php
     require_once("Connection.php");
-    if (isset($_POST['detailobat'])) {
-
-    }
-    // $dataobat = 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -163,9 +159,7 @@
         <thead>
             <tr>
                 <th>Nama Obat</th>
-                <th>Stock</th>
                 <th>Harga</th>
-                <th>Deskripsi</th>
                 <th>Foto</th>
                 <th>Action</th>
             </tr>
@@ -189,14 +183,12 @@
                     $("#obat-table").append(`
                     <tr>
                         <td>${element['nama_obat']}</td>
-                        <td>${element['stock_obat']}</td>
                         <td>Rp. ${element['harga_obat']},-</td>
-                        <td>${element['deskripsi']}</td>
                         <td><img src="uploads/obat/${element['image_name']}" alt="IMG" width="100" height="100"></td>
                         <td>
-                            <form action="#" method="post">
-                                <button type="button" class="btn btn-danger btn-rounded" name="detailobat">Detail Obat</button>
-                            </form>
+                            <a href="detailobat.php?id=${element['id']}">
+                                <button type="button" class="btn btn-danger btn-rounded">Detail Obat</button>
+                            </a>
                         </td>
                     </tr>
                     `); 
