@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2020 at 10:57 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Waktu pembuatan: 14 Des 2020 pada 12.55
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.3.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -27,9 +26,26 @@ USE `project`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cabang`
+-- Struktur dari tabel `barang`
 --
 
+DROP TABLE IF EXISTS `barang`;
+CREATE TABLE `barang` (
+  `id` int(9) NOT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `stok` int(9) DEFAULT NULL,
+  `harga` int(9) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `deskripsi` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `cabang`
+--
+
+DROP TABLE IF EXISTS `cabang`;
 CREATE TABLE `cabang` (
   `id` int(11) NOT NULL,
   `nama` varchar(255) DEFAULT NULL,
@@ -41,9 +57,10 @@ CREATE TABLE `cabang` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `obat`
+-- Struktur dari tabel `obat`
 --
 
+DROP TABLE IF EXISTS `obat`;
 CREATE TABLE `obat` (
   `id` int(3) NOT NULL,
   `nama_obat` varchar(30) NOT NULL,
@@ -56,9 +73,10 @@ CREATE TABLE `obat` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reciepes`
+-- Struktur dari tabel `reciepes`
 --
 
+DROP TABLE IF EXISTS `reciepes`;
 CREATE TABLE `reciepes` (
   `id` int(5) NOT NULL,
   `user_id` varchar(60) NOT NULL,
@@ -70,9 +88,10 @@ CREATE TABLE `reciepes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resepdetail`
+-- Struktur dari tabel `resepdetail`
 --
 
+DROP TABLE IF EXISTS `resepdetail`;
 CREATE TABLE `resepdetail` (
   `reciepes_id` int(5) NOT NULL,
   `message` longtext DEFAULT NULL
@@ -81,9 +100,24 @@ CREATE TABLE `resepdetail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `supplier`
 --
 
+DROP TABLE IF EXISTS `supplier`;
+CREATE TABLE `supplier` (
+  `id` int(3) NOT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `nomortelepon` int(9) DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `users`
+--
+
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `email` varchar(60) NOT NULL,
   `username` varchar(60) NOT NULL,
@@ -96,50 +130,74 @@ CREATE TABLE `users` (
 --
 
 --
--- Indexes for table `cabang`
+-- Indeks untuk tabel `barang`
+--
+ALTER TABLE `barang`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `cabang`
 --
 ALTER TABLE `cabang`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `obat`
+-- Indeks untuk tabel `obat`
 --
 ALTER TABLE `obat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `reciepes`
+-- Indeks untuk tabel `reciepes`
 --
 ALTER TABLE `reciepes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `supplier`
+--
+ALTER TABLE `supplier`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`username`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `cabang`
+-- AUTO_INCREMENT untuk tabel `barang`
+--
+ALTER TABLE `barang`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `cabang`
 --
 ALTER TABLE `cabang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `obat`
+-- AUTO_INCREMENT untuk tabel `obat`
 --
 ALTER TABLE `obat`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `reciepes`
+-- AUTO_INCREMENT untuk tabel `reciepes`
 --
 ALTER TABLE `reciepes`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
