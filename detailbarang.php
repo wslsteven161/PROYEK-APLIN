@@ -154,19 +154,17 @@
             </nav>
         </div>
     </header>
-    <h1 style="color:gray;">List Obat</h1>
+    <h1 style="color:gray;">List Barang</h1>
     <table class="table table-dark table-bordered table-hover">
         <thead>
             <tr>
-                <th>Nama Obat</th>
+                <th>Nama Barang</th>
+                <th>Stock</th>
                 <th>Harga</th>
+                <th>Deskripsi</th>
                 <th>Foto</th>
-                <th>Action</th>
             </tr>
         </thead>
-        <tbody id="obat-table">
-
-        </tbody>
         <tbody id="barang-table">
 
         </tbody>
@@ -175,31 +173,7 @@
 <script>
     $(document).ready(function(){
         $.ajax({
-            url: "Utils/getAllObat.php",
-            data: {},
-            type: "POST",
-            success: function(data, status){
-                console.log(data);
-                let obats = JSON.parse(data);
-                $("#obat-table").empty();
-                obats.forEach(element => {
-                    $("#obat-table").append(`
-                    <tr>
-                        <td>${element['nama_obat']}</td>
-                        <td>Rp. ${element['harga_obat']},-</td>
-                        <td><img src="uploads/obat/${element['image_name']}" alt="IMG" width="100" height="100"></td>
-                        <td>
-                            <a href="detailobat.php?id=${element['id']}">
-                                <button type="button" class="btn btn-danger btn-rounded">Detail Obat</button>
-                            </a>
-                        </td>
-                    </tr>
-                    `); 
-                });
-            }
-        });
-        $.ajax({
-            url: "Utils/getAllBarang.php",
+            url: "Utils/getBarang.php",
             data: {},
             type: "POST",
             success: function(data, status){
@@ -210,13 +184,10 @@
                     $("#barang-table").append(`
                     <tr>
                         <td>${element['nama']}</td>
+                        <td>${element['stok']}</td>
                         <td>Rp. ${element['harga']},-</td>
-                        <td><img src="uploads/obat/${element['foto']}" alt="IMG" width="100" height="100"></td>
-                        <td>
-                            <a href="detailbarang.php?id=${element['id']}">
-                                <button type="button" class="btn btn-danger btn-rounded">Detail Barang</button>
-                            </a>
-                        </td>
+                        <td>${element['deskripsi']}</td>
+                        <td><img src="uploads/obat/${element['image_name']}" alt="IMG" width="100" height="100"></td>
                     </tr>
                     `); 
                 });
