@@ -418,6 +418,11 @@
             <a href="adminResep.php">Lihat Resep</a>
         </div>
 
+        <div class="button" id="button-5">
+            <div id="translate"></div>
+            <a href="javascript:void(0)">Tambah/Edit Barang</a>
+        </div>
+
         <!-- <div class="button" id="button-7"> -->
         <div class="button" id="button-5">
             <!-- <div id="dub-arrow"><img src="#" alt="" /></div> -->
@@ -428,7 +433,7 @@
     </div>
 
     <div class="container flex-container">
-        <table class="table table-dark table-bordered table-hover text-center" style="display:none;" id="tableUser"> 
+        <table class="table table-dark table-bordered table-hover" style="display:none;" id="tableUser"> 
             <caption>List of users</caption>
             <thead>
                 <tr>
@@ -475,7 +480,7 @@
             </div>
 
             <h1 style="color:gray;">List Obat</h1>
-            <table class="table table-dark table-bordered table-hover text-center">
+            <table class="table table-dark table-bordered table-hover">
                 <caption>List of obat</caption>
                 <thead>
                     <tr>
@@ -530,7 +535,7 @@
             </div>
 
             <h1 style="color:gray;">List Cabang</h1>
-            <table class="table table-dark table-bordered table-hover text-center">
+            <table class="table table-dark table-bordered table-hover">
                 <caption>List of Cabang</caption>
                 <thead>
                     <tr>
@@ -542,6 +547,63 @@
                     </tr>
                 </thead>
                 <tbody id="cabang-table">
+
+                    <!-- <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                    </tr> -->
+
+                </tbody>
+            </table>
+        </div>
+        <div style="width:1000px;display:none;" id="FormBarang">
+            <label style="color:white;">Form Barang</label>
+            <div class="container insertFormObat">
+                <form id="form-barang" method="POST" action="adminPage.php?Barang=1" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Nama Barang</label>
+                        <input type="text" name="nama_barang" class="form-control" placeholder="ex. Bodreksin">
+                    </div>
+                    <div class="form-group">
+                        <label>Harga Barang</label>
+                        <input type="number" name="harga_barang" class="form-control" placeholder="Rp. ">
+                    </div>
+                    <div class="form-group">
+                        <label>Stock Barang</label>
+                        <input type="number" name="stock_barang" class="form-control" placeholder="ex. 7">
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi Barang</label>
+                        <textarea name="deskripsi_Barang" class="form-control" rows="3" placeholder="ex. Obat Batuk"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Input foto barang</label>
+                        <input type="file" name="image_barang" class="form-control-file" id="image_barang">
+                    </div>
+                    <!-- <div class="form-group">
+                        <img width="100" style="border:#000; z-index:1;position: relative; border-width:2px; float:left" height="100px" src="" id="thumbnail"/>
+                    </div> -->
+                    <button type="submit" class="btn btn-success" style="float:right;margin-bottom:20px;" name="btnSubmit">Submit</button>
+                </form>
+            </div>
+            <h1 style="color:gray;">List Obat</h1>
+            <table class="table table-dark table-bordered table-hover">
+                <caption>List of barang</caption>
+                <thead>
+                    <tr>
+                        <th>Nama Barang</th>
+                        <th>Stock</th>
+                        <th>Harga</th>
+                        <th>Deskripsi</th>
+                        <th>Foto</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="barang-table">
 
                     <!-- <tr>
                         <td>1</td>
@@ -695,6 +757,33 @@
                 $("#user-table").html(result);
             },
             error: function(){
+
+            }
+        });
+    }
+    function DisplayAllBarang()
+    {
+        $.ajax({
+            url: "Utils/getAllBarang.php",
+            data: {},
+            type: "POST",
+            success: function(data, status){
+                //console.log(data);
+                let obats = JSON.parse(data);
+
+                $("#barang-table").empty();
+                obats.forEach(element => {
+                    $("#barang-table").append(`
+                    <tr>
+                        <td>${element['nama_obat']}</td>
+                        <td>${element['stock_obat']}</td>
+                        <td>Rp. ${element['harga_obat']},-</td>
+                        <td>${element['deskripsi']}</td>
+                        <td><img src="uploads/obat/${element['image_name']}" alt="IMG" width="100" height="100"></td>
+                        <td><button type="button" class="btn btn-danger btn-rounded" onClick="deleteObat('${element['id']}')">Delete</button></td>
+                    </tr>
+                    `); 
+                });
 
             }
         });
