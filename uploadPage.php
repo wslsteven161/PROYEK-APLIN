@@ -249,7 +249,29 @@
     <?php 
     }   
     ?>
-    
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalMessage" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">List Message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="listMessages">
+                <!-- <p>Satu</p>
+                <br> -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="dismissModal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
 </body>
 <script>
     var startUpload = function(files) {
@@ -330,6 +352,36 @@
         }
     });
 
+    function OpenModal(id){
+        $("#myModal").modal('show');
+
+        $.ajax({
+            url: "Utils/getallMessages.php",
+            type: "POST",
+            data: {"id" : id},
+            success: function(data){
+                //console.log(data);
+                let msgs = JSON.parse(data);
+
+                $("#listMessages").empty();
+                $.each(msgs, function(index, value){
+                    $("#listMessages").append(`
+                        <br>
+                        <p>${value["message"]}</p>
+                    `);
+                });
+            }
+        })
+    }
+
+    function CloseModal(){
+        $("#myModal").modal('hide');
+    }
+
+    function deleteResep(id){
+        
+    }
+
     function getAllUploadsUser()
     {
         // $.ajax({
@@ -368,8 +420,8 @@
                         <tr>
                             <th scope="row">${(index + 1)}</th>
                             <td><a href="uploads/resep/${value['picture']}" target="_blank">${value['picture']}</a></td>
-                            <td>${value['status'] == 0 ? "<div class='alert alert-info' role='alert'>Please Wait for Reviewer!</div>" : `<div class='alert alert-success' role='alert'><a href='#' class='alert-link'>Click Here to see review</a></div>`}</td>
-                            <td>${value['status'] == 0 ? `<button type="button" class="btn btn-danger">Delete</button>` : ""}</td>
+                            <td>${value['status'] == 0 ? "<div class='alert alert-info' role='alert'>Please Wait for Reviewer!</div>" : `<div class='alert alert-success' role='alert'><a href='javascript:void(0)' class='alert-link' onclick="OpenModal('${value["id"]}')">Click Here to see review</a></div>`}</td>
+                            <td>${value['status'] == 0 ? `<button type="button" class="btn btn-danger" onClick="">Delete</button>` : ""}</td>
                         </tr>
                     `);
                 });
