@@ -428,7 +428,7 @@
     </div>
 
     <div class="container flex-container">
-        <table class="table table-dark table-bordered table-hover" style="display:none;" id="tableUser"> 
+        <table class="table table-dark table-bordered table-hover text-center" style="display:none;" id="tableUser"> 
             <caption>List of users</caption>
             <thead>
                 <tr>
@@ -475,7 +475,7 @@
             </div>
 
             <h1 style="color:gray;">List Obat</h1>
-            <table class="table table-dark table-bordered table-hover">
+            <table class="table table-dark table-bordered table-hover text-center">
                 <caption>List of obat</caption>
                 <thead>
                     <tr>
@@ -530,7 +530,7 @@
             </div>
 
             <h1 style="color:gray;">List Cabang</h1>
-            <table class="table table-dark table-bordered table-hover">
+            <table class="table table-dark table-bordered table-hover text-center">
                 <caption>List of Cabang</caption>
                 <thead>
                     <tr>
