@@ -575,7 +575,7 @@
                         data: {"id" : id},
                         type: "POST",
                         success: function(data, status){
-                            console.log(data);
+                            //console.log(data);
                             if (data == "ok"){
                                 swal("Success","Success delete Obat !", "success");
                             }
@@ -604,7 +604,7 @@
                         data: {"id" : id},
                         type: "POST",
                         success: function(data, status){
-                            console.log(data);
+                            //console.log(data);
                             if (data == "ok"){
                                 swal("Success","Success delete Cabang!", "success");
                             }
@@ -624,7 +624,7 @@
             data: {},
             type: "POST",
             success: function(data, status){
-                console.log(data);
+                //console.log(data);
                 let obats = JSON.parse(data);
 
                 $("#obat-table").empty();
@@ -651,7 +651,7 @@
             data: {},
             type: "POST",
             success: function(data, status){
-                console.log(data);
+                //console.log(data);
                 let obats = JSON.parse(data);
                 $("#cabang-table").empty();
                 obats.forEach(element => {

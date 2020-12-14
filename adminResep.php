@@ -131,6 +131,19 @@
     
 </body>
 <script>
+    function changeStatus(id)
+    {
+        swal({
+            title: "ChangeS Status",
+            text: "You will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: [
+                'No, cancel it!',
+                'Yes, I am sure!'
+            ],
+            dangerMode: true,
+        });
+    }
     function getAllResep()
     {
         $.ajax({
@@ -143,13 +156,13 @@
                     let str1 = `
                     <tr>
                         <th scope="row">${(index + 1)}</th>
-                        <td>User_${value['id']}</td>
+                        <td>User_${value['user_id']}</td>
                         <td width="30%"><div id="contBtn"><a href="uploads/resep/${value['picture']}" target="_blank"><img id="imgHover" src="uploads/resep/${value['picture']}" alt="IMAGE" style="width:75px;height:75px;"><div class="overlay"><div class="text">Click to get full image!</div></div></a></div></td>
                         <td>
                             ${value['status'] == 0 ? `<div class="alert alert-warning" role="alert">Belum Di Lihat!</div>` : `<div class="alert alert-success" role="alert">Sudah Di Lihat</div>`}
                         </td>
                         <td>
-                            ${value['status'] == 0 ? `<button type="button" class="btn btn-primary btn-sm">Change Status</button>` : ""}
+                            ${value['status'] == 0 ? `<button type="button" class="btn btn-primary btn-sm" onClick="changeStatus('${value['id']}')">Change Status</button>` : ""}
                             <button type="button" class="btn btn-secondary btn-sm">Embed Message</button>
                         </td>
                     </tr>

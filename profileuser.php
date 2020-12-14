@@ -30,6 +30,17 @@
     <!-- JQUERY COOKIE PLUGIN -->
     <script src="js/js.cookie-2.2.1.min.js"></script>
     
+    <!-- GOOGLE SIGN IN -->
+    <script>
+        function onLoad() {
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        });
+    }
+    </script>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+    <meta name="google-signin-client_id" content="564808401235-vgc234dnbiqgmotgd48m0gopt8f6dq1d.apps.googleusercontent.com">
+
 </head>
 <body>
 <header class="fixed-top d-flex align-items-center header-transparent">
@@ -70,7 +81,6 @@
                     <?php
                     }
                     ?>
-
                 </ul>
             </nav>
         </div>
@@ -139,14 +149,17 @@
         });
 
         $("#keluar-btn").on('click', function(){
+            $.session.clear();
             Cookies.remove('User_LoggedIn');
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
             window.location.replace("index.php");
         });
 
+
     });
-
-
-    
     
 </script>
 </html>
