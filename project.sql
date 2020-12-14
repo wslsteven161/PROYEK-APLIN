@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2020 at 03:53 PM
+-- Generation Time: Dec 14, 2020 at 10:57 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -53,17 +53,6 @@ CREATE TABLE `obat` (
   `image_name` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `obat`
---
-
-INSERT INTO `obat` (`id`, `nama_obat`, `harga_obat`, `stock_obat`, `deskripsi`, `image_name`) VALUES
-(1, 'asd', 23, 2, 'asdasdada', 'asd.jpg'),
-(2, 'asd', 222, 1, 'asdadasd', 'asd.jpg'),
-(3, 'asd', 222, 1, 'asdadasd', 'asd.jpg'),
-(4, 'asd', 222, 1, 'asdadasd', 'asd.jpg'),
-(5, 'asd', 222, 1, 'asdadasd', 'asd.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -73,15 +62,10 @@ INSERT INTO `obat` (`id`, `nama_obat`, `harga_obat`, `stock_obat`, `deskripsi`, 
 CREATE TABLE `reciepes` (
   `id` int(5) NOT NULL,
   `user_id` varchar(60) NOT NULL,
-  `picture` varchar(60) NOT NULL
+  `picture` varchar(60) NOT NULL,
+  `status` int(3) NOT NULL DEFAULT 0,
+  `time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `reciepes`
---
-
-INSERT INTO `reciepes` (`id`, `user_id`, `picture`) VALUES
-(1, '1', '1_1607266222.png');
 
 -- --------------------------------------------------------
 
@@ -91,17 +75,8 @@ INSERT INTO `reciepes` (`id`, `user_id`, `picture`) VALUES
 
 CREATE TABLE `resepdetail` (
   `reciepes_id` int(5) NOT NULL,
-  `time` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` int(3) NOT NULL DEFAULT 0,
   `message` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `resepdetail`
---
-
-INSERT INTO `resepdetail` (`reciepes_id`, `time`, `status`, `message`) VALUES
-(1, '2020-12-06 21:50:22', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -117,17 +92,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`email`, `username`, `password`, `is_disabled`) VALUES
-('1@mail.com', '1', '$2y$10$A8veSJWZMvfaocpeKcIgn.Alxb9aI4QVlBfPo9V2Qh/Darww3dWf6', 0),
-('5', '5', '$2y$10$Xda5mb.WnhL0Df.Z/kCJKuMntBZdakMIUNj0UI2hqi.Sa8MaDQ0r6', 0),
-('', '6', '$2y$10$arllNSXs4KDm4X9fU/00qePlJulcbuyWQuW5CEiAE/V0M6JBS/L16', 0);
-
---
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `cabang`
+--
+ALTER TABLE `cabang`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `obat`
@@ -152,16 +124,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `cabang`
+--
+ALTER TABLE `cabang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `reciepes`
 --
 ALTER TABLE `reciepes`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
