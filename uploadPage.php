@@ -379,7 +379,29 @@
     }
 
     function deleteResep(id){
-        
+        swal({
+            title: "Anda Yakin ?",
+            text: "Aksi ini tidak dapat dicancel!",
+            icon: "warning",
+            buttons: [
+                'Tidak!',
+                'Ya, Saya yakin!'
+            ],
+            dangerMode: true,
+        }).then(function(Yes){
+            if (Yes)
+            {
+                $.ajax({
+                    url: "Utils/deleteReciepes.php",
+                    data: {"id" : id},
+                    type: "POST",
+                    success: function(datas){
+                        console.log(datas);
+                    }
+                })
+            }
+            getAllUploadsUser();
+        });
     }
 
     function getAllUploadsUser()
@@ -421,7 +443,7 @@
                             <th scope="row">${(index + 1)}</th>
                             <td><a href="uploads/resep/${value['picture']}" target="_blank">${value['picture']}</a></td>
                             <td>${value['status'] == 0 ? "<div class='alert alert-info' role='alert'>Please Wait for Reviewer!</div>" : `<div class='alert alert-success' role='alert'><a href='javascript:void(0)' class='alert-link' onclick="OpenModal('${value["id"]}')">Click Here to see review</a></div>`}</td>
-                            <td>${value['status'] == 0 ? `<button type="button" class="btn btn-danger" onClick="">Delete</button>` : ""}</td>
+                            <td>${value['status'] == 0 ? `<button type="button" class="btn btn-danger" onClick="deleteResep('${value["id"]}')">Delete</button>` : ""}</td>
                         </tr>
                     `);
                 });
