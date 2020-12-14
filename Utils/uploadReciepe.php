@@ -33,8 +33,8 @@
             $filedone = $user_id . "_" . $date->getTimestamp() . "." . $file_ext;
             move_uploaded_file($file_tmp, $target_dir . $filedone);
             $pdo->query("INSERT INTO reciepes(user_id, picture) VALUES ('$user_id','$filedone')");
-            $id_history = $pdo->lastInsertId();
-            $pdo->query("INSERT INTO resepdetail(reciepes_id) VALUES('$id_history')");
+            //$id_history = $pdo->lastInsertId();
+            //$pdo->query("INSERT INTO resepdetail(reciepes_id) VALUES('$id_history')");
             echo "success";
         }
     }

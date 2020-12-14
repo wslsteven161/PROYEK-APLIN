@@ -214,7 +214,7 @@
                 <div class="js-upload-finished">
                     <h4>Upload history</h4>
                     
-                    <table class="table table-bordered">
+                    <table class="table table-bordered text-center">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -332,6 +332,30 @@
 
     function getAllUploadsUser()
     {
+        // $.ajax({
+        //     url: "Utils/getUploadHistory.php",
+        //     type: "POST",
+        //     data: {"user_id" : Cookies.get('User_LoggedIn')},
+        //     success: function(value){
+        //         let datas = JSON.parse(value);
+        //         $("#upload-history").empty();
+        //         $.each(datas, function(index, value){
+        //             $("#upload-history").append(`
+        //                 <tr>
+        //                     <th scope="row">${(index + 1)}</th>
+        //                     <td><a href="uploads/resep/${value['picture']}" target="_blank">${value['picture']}</a></td>
+        //                     <td>${value['status'] == 0 ? "<div class='alert alert-info' role='alert'>Please Wait for Reviewer!</div>" : "<div class='alert alert-success' role='alert'><a href='#' class='alert-link'>Click Here to see review</a></div>"}</td>
+        //                     <td><button type="button" class="btn btn-danger">Delete</button></td>
+        //                 </tr>
+        //             `);
+        //         });
+        //     },
+        //     error: function(){
+
+        //     }
+        // });
+
+
         $.ajax({
             url: "Utils/getUploadHistory.php",
             type: "POST",
@@ -344,8 +368,8 @@
                         <tr>
                             <th scope="row">${(index + 1)}</th>
                             <td><a href="uploads/resep/${value['picture']}" target="_blank">${value['picture']}</a></td>
-                            <td>${value['status'] == 0 ? "<div class='alert alert-info' role='alert'>Please Wait for Reviewer!</div>" : "<div class='alert alert-success' role='alert'><a href='#' class='alert-link'>Click Here to see review</a></div>"}</td>
-                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+                            <td>${value['status'] == 0 ? "<div class='alert alert-info' role='alert'>Please Wait for Reviewer!</div>" : `<div class='alert alert-success' role='alert'><a href='#' class='alert-link'>Click Here to see review</a></div>`}</td>
+                            <td>${value['status'] == 0 ? `<button type="button" class="btn btn-danger">Delete</button>` : ""}</td>
                         </tr>
                     `);
                 });

@@ -415,7 +415,7 @@
 
         <div class="button" id="button-6">
             <div id="spin"></div>
-            <a href="#">Lihat Resep</a>
+            <a href="adminResep.php">Lihat Resep</a>
         </div>
 
         <!-- <div class="button" id="button-7"> -->
@@ -559,6 +559,64 @@
 
 </body>
 <script>
+    function deleteObat(id)
+    {
+        swal({
+                title: "Apakah anda yakin?",
+                text: "Tidak bisa di revert back!",
+                icon: "warning",
+                buttons: ['No','Yes'],
+                dangerMode: true,
+            }).then(function(isYes){
+                if (isYes)
+                {
+                    $.ajax({
+                        url: "Utils/deleteObat.php",
+                        data: {"id" : id},
+                        type: "POST",
+                        success: function(data, status){
+                            console.log(data);
+                            if (data == "ok"){
+                                swal("Success","Success delete Obat !", "success");
+                            }
+                            else{
+                                swal("Error","Something wrong !", "error");
+                            }
+                            DisplayAllObat();
+                        }
+                    });
+                }
+            });
+    }
+    function deleteCabang(id)
+    {
+        swal({
+                title: "Apakah anda yakin?",
+                text: "Tidak bisa di revert back!",
+                icon: "warning",
+                buttons: ['No','Yes'],
+                dangerMode: true,
+            }).then(function(isYes){
+                if (isYes)
+                {
+                    $.ajax({
+                        url: "Utils/deleteCabang.php",
+                        data: {"id" : id},
+                        type: "POST",
+                        success: function(data, status){
+                            console.log(data);
+                            if (data == "ok"){
+                                swal("Success","Success delete Cabang!", "success");
+                            }
+                            else{
+                                swal("Error","Something wrong!", "error");
+                            }
+                            DisplayAllCabang();
+                        }
+                    });
+                }
+            });
+    }
     function DisplayAllObat()
     {
         $.ajax({
@@ -578,7 +636,7 @@
                         <td>Rp. ${element['harga_obat']},-</td>
                         <td>${element['deskripsi']}</td>
                         <td><img src="uploads/obat/${element['image_name']}" alt="IMG" width="100" height="100"></td>
-                        <td><button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                        <td><button type="button" class="btn btn-danger btn-rounded" onClick="deleteObat('${element['id']}')">Delete</button></td>
                     </tr>
                     `); 
                 });
@@ -603,7 +661,7 @@
                         <td>${element['jalan']}</td>
                         <td>${element['nomortelpon']}</td>
                         <td><img src="uploads/cabang/${element['foto']}" alt="IMG" width="100" height="100"></td>
-                        <td><button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                        <td><button type="button" class="btn btn-danger btn-rounded" onClick="deleteCabang('${element['id']}')">Delete</button></td>
                     </tr>
                     `); 
                 });
@@ -611,7 +669,6 @@
             }
         });
     }
-
     function DisplayAllUsers()
     {
         $.ajax({
