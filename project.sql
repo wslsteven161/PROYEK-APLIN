@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Des 2020 pada 12.55
+-- Waktu pembuatan: 15 Des 2020 pada 05.46
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.3.22
 
@@ -39,6 +39,15 @@ CREATE TABLE `barang` (
   `deskripsi` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `barang`
+--
+
+INSERT INTO `barang` (`id`, `nama`, `stok`, `harga`, `foto`, `deskripsi`) VALUES
+(1, 'aku', 2, 1, 'aku.jpg', ''),
+(3, 'kamu', 4, 3, 'kamu.jpg', ''),
+(4, 'kmu', 45, 23, 'kmu.jpg', '');
+
 -- --------------------------------------------------------
 
 --
@@ -70,6 +79,14 @@ CREATE TABLE `obat` (
   `image_name` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `obat`
+--
+
+INSERT INTO `obat` (`id`, `nama_obat`, `harga_obat`, `stock_obat`, `deskripsi`, `image_name`) VALUES
+(1, 'sya', 2, 5, 'qweqwe', 'sya.jpeg'),
+(2, 'kmu', 6, 2, 'asdasd', 'kmu.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -85,6 +102,14 @@ CREATE TABLE `reciepes` (
   `time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `reciepes`
+--
+
+INSERT INTO `reciepes` (`id`, `user_id`, `picture`, `status`, `time`) VALUES
+(1, 'steven', 'steven_1608006272.jpg', 0, '2020-12-15 11:24:32'),
+(2, 'steven', 'steven_1608006479.jpg', 1, '2020-12-15 11:27:59');
+
 -- --------------------------------------------------------
 
 --
@@ -96,6 +121,13 @@ CREATE TABLE `resepdetail` (
   `reciepes_id` int(5) NOT NULL,
   `message` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `resepdetail`
+--
+
+INSERT INTO `resepdetail` (`reciepes_id`, `message`) VALUES
+(2, 'obatnya blabla');
 
 -- --------------------------------------------------------
 
@@ -124,6 +156,13 @@ CREATE TABLE `users` (
   `password` varchar(60) NOT NULL,
   `is_disabled` tinyint(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`email`, `username`, `password`, `is_disabled`) VALUES
+('jere@gmail.com', 'steven', '$2y$10$r4RJHJT.wO04FiCBx128c.7bqdR22r4Ls6Q8eRQwtsnNOBJVCWSaC', 1);
 
 --
 -- Indexes for dumped tables
@@ -173,31 +212,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `cabang`
 --
 ALTER TABLE `cabang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `reciepes`
 --
 ALTER TABLE `reciepes`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
