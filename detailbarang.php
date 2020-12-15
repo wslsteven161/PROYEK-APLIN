@@ -173,9 +173,9 @@
 <script>
     $(document).ready(function(){
         $.ajax({
-            url: "Utils/getBarang.php",
+            url: "Utils/getBarang.php?id=<?=$_GET['id']?>",
             data: {},
-            type: "POST",
+            type: "GET",
             success: function(data, status){
                 console.log(data);
                 let obats = JSON.parse(data);

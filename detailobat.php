@@ -173,9 +173,9 @@
 <script>
     $(document).ready(function(){
         $.ajax({
-            url: "Utils/getObat.php",
+            url: "Utils/getObat.php?id=<?=$_GET['id']?>",
             data: {},
-            type: "POST",
+            type: "GET",
             success: function(data, status){
                 console.log(data);
                 let obats = JSON.parse(data);
