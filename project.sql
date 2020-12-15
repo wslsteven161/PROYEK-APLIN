@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Des 2020 pada 05.46
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.3.22
+-- Generation Time: Dec 15, 2020 at 05:59 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -26,10 +27,9 @@ USE `project`;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `barang`
+-- Table structure for table `barang`
 --
 
-DROP TABLE IF EXISTS `barang`;
 CREATE TABLE `barang` (
   `id` int(9) NOT NULL,
   `nama` varchar(255) DEFAULT NULL,
@@ -40,21 +40,18 @@ CREATE TABLE `barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `barang`
+-- Dumping data for table `barang`
 --
 
 INSERT INTO `barang` (`id`, `nama`, `stok`, `harga`, `foto`, `deskripsi`) VALUES
-(1, 'aku', 2, 1, 'aku.jpg', ''),
-(3, 'kamu', 4, 3, 'kamu.jpg', ''),
-(4, 'kmu', 45, 23, 'kmu.jpg', '');
+(1, 'Kursi Roda', 1, 428000, 'Kursi Roda.png', '');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cabang`
+-- Table structure for table `cabang`
 --
 
-DROP TABLE IF EXISTS `cabang`;
 CREATE TABLE `cabang` (
   `id` int(11) NOT NULL,
   `nama` varchar(255) DEFAULT NULL,
@@ -63,13 +60,20 @@ CREATE TABLE `cabang` (
   `foto` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `cabang`
+--
+
+INSERT INTO `cabang` (`id`, `nama`, `jalan`, `nomortelpon`, `foto`) VALUES
+(3, '', 'Jalan Malang selatan', 12345678, '.jpg'),
+(4, '', 'Jalan Surabaya', 123456789, '.jpg');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `obat`
+-- Table structure for table `obat`
 --
 
-DROP TABLE IF EXISTS `obat`;
 CREATE TABLE `obat` (
   `id` int(3) NOT NULL,
   `nama_obat` varchar(30) NOT NULL,
@@ -80,20 +84,19 @@ CREATE TABLE `obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `obat`
+-- Dumping data for table `obat`
 --
 
 INSERT INTO `obat` (`id`, `nama_obat`, `harga_obat`, `stock_obat`, `deskripsi`, `image_name`) VALUES
-(1, 'sya', 2, 5, 'qweqwe', 'sya.jpeg'),
-(2, 'kmu', 6, 2, 'asdasd', 'kmu.jpg');
+(1, 'Bodreksin', 15000, 8, 'Obat penurun demam', 'Bodreksin.png'),
+(2, 'Panadol', 19000, 9, 'Obat Anti demam', 'Panadol.png');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `reciepes`
+-- Table structure for table `reciepes`
 --
 
-DROP TABLE IF EXISTS `reciepes`;
 CREATE TABLE `reciepes` (
   `id` int(5) NOT NULL,
   `user_id` varchar(60) NOT NULL,
@@ -103,39 +106,39 @@ CREATE TABLE `reciepes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `reciepes`
+-- Dumping data for table `reciepes`
 --
 
 INSERT INTO `reciepes` (`id`, `user_id`, `picture`, `status`, `time`) VALUES
-(1, 'steven', 'steven_1608006272.jpg', 0, '2020-12-15 11:24:32'),
-(2, 'steven', 'steven_1608006479.jpg', 1, '2020-12-15 11:27:59');
+(1, '1', '1_1608008065.png', 0, '2020-12-15 11:54:25'),
+(2, '1', '1_1608008075.png', 0, '2020-12-15 11:54:35'),
+(3, '3', '3_1608008214.png', 1, '2020-12-15 11:56:54');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `resepdetail`
+-- Table structure for table `resepdetail`
 --
 
-DROP TABLE IF EXISTS `resepdetail`;
 CREATE TABLE `resepdetail` (
   `reciepes_id` int(5) NOT NULL,
   `message` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `resepdetail`
+-- Dumping data for table `resepdetail`
 --
 
 INSERT INTO `resepdetail` (`reciepes_id`, `message`) VALUES
-(2, 'obatnya blabla');
+(3, 'Contoh 1'),
+(3, 'Contoh 2');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `supplier`
+-- Table structure for table `supplier`
 --
 
-DROP TABLE IF EXISTS `supplier`;
 CREATE TABLE `supplier` (
   `id` int(3) NOT NULL,
   `nama` varchar(255) DEFAULT NULL,
@@ -143,13 +146,19 @@ CREATE TABLE `supplier` (
   `alamat` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`id`, `nama`, `nomortelepon`, `alamat`) VALUES
+(3, 'Jaragon', 123456789, 'Jalan Jaragon Selatan');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `email` varchar(60) NOT NULL,
   `username` varchar(60) NOT NULL,
@@ -158,85 +167,87 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`email`, `username`, `password`, `is_disabled`) VALUES
-('jere@gmail.com', 'steven', '$2y$10$r4RJHJT.wO04FiCBx128c.7bqdR22r4Ls6Q8eRQwtsnNOBJVCWSaC', 1);
+('1@mail.com', '1', '$2y$10$r6HfyarVcjr5oZUWRufuNeHOa8Tqw7j2G2c.YEu75E/VyUl05DyJi', 0),
+('2@mail.com', '2', '$2y$10$45LsP8PTgBvzAAxRJ6k/P.vBuJkHkUSc5LKXmM.ZLNcKXOrvCDkf.', 1),
+('3@mail.com', '3', '$2y$10$I76fYenyF3dxKkLBpTF5FednJE29fNwOIOUooXMSyuL9NbXLzepWC', 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `barang`
+-- Indexes for table `barang`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `cabang`
+-- Indexes for table `cabang`
 --
 ALTER TABLE `cabang`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `obat`
+-- Indexes for table `obat`
 --
 ALTER TABLE `obat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `reciepes`
+-- Indexes for table `reciepes`
 --
 ALTER TABLE `reciepes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `supplier`
+-- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`username`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `barang`
+-- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `cabang`
+-- AUTO_INCREMENT for table `cabang`
 --
 ALTER TABLE `cabang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `obat`
+-- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `reciepes`
+-- AUTO_INCREMENT for table `reciepes`
 --
 ALTER TABLE `reciepes`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `supplier`
+-- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
